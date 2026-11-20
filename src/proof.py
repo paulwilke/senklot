@@ -16,7 +16,7 @@ def main(out, size=64):
     rows = []
     for y, x in LOCS:
         f = ImageFont.truetype(FONT, size)
-        f.set_variation_by_axes([y, x])
+        f.set_variation_by_axes([400, y, x])
         lab = ImageFont.load_default()
         rows.append((f"BLSY {y} BLSX {x}", f, lab))
     lh = int(size * 1.35)

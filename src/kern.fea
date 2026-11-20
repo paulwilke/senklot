@@ -1,3 +1,7 @@
+# Part of the Senklot Font Software.
+# Copyright 2026 The Senklot Project Authors, with Reserved Font Name "Senklot".
+# Licensed under the SIL Open Font License 1.1 (see OFL.txt), not under the MIT licence of the build tools.
+
 languagesystem DFLT dflt;
 languagesystem latn dflt;
 

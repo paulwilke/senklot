@@ -23,6 +23,7 @@ def main():
     for p in glob.glob(os.path.join(FONTS, "*.woff2")) + [os.path.join(FONTS, "senklot.css")]:
         shutil.copy(p, out)
     shutil.copy(os.path.join(ROOT, "OFL.txt"), out)
+    shutil.copy(os.path.join(ROOT, "src", "LICENSE.txt"), os.path.join(out, "LICENSE-CODE.txt"))
     for p in glob.glob(os.path.join(FONTS, "static", "*.woff2")):
         shutil.copy(p, os.path.join(out, "static"))
 
@@ -34,6 +35,7 @@ def main():
         z.write(os.path.join(ROOT, "OFL.txt"), "Senklot/OFL.txt")
         z.write(os.path.join(ROOT, "OFL.txt"), "Senklot/web/OFL.txt")
         z.write(os.path.join(ROOT, "src", "LICENSE.txt"), "Senklot/LICENSE-CODE.txt")
+        z.write(os.path.join(ROOT, "src", "LICENSE.txt"), "Senklot/web/LICENSE-CODE.txt")
         for p in sorted(glob.glob(os.path.join(FONTS, "*.*"))):
             z.write(p, "Senklot/web/" + os.path.basename(p) if p.endswith((".woff2", ".css"))
                     else "Senklot/variable/" + os.path.basename(p))

@@ -2,7 +2,7 @@
 
 > I was on my construction site, working with a plumb bob. Watching it swing, I wondered: what if a typeface could sway and settle like that? That’s Senklot.
 
-A sans-serif with a **movable centre of mass**, in Roman and a true Italic. Stroke thickness is a *position field* over each glyph, not a function of stroke direction. Three variable axes:
+A sans-serif with a **movable centre of mass**, in Roman and a true Italic. Besides a mild stroke contrast (horizontals about 12 % lighter), stroke thickness comes from a *position field* over each glyph, and two axes move its centre. Three variable axes:
 
 | Axis | Range | Default | Effect |
 |------|-------|---------|--------|
@@ -15,7 +15,8 @@ The italic is a separate file (`font-style: italic` picks it). It slants the ske
 The ballast axes never change advance widths, so animating them never reflows text. Dots (i, j, punctuation, umlauts) are "loose ballast": they grow, shrink and drift with the mass.
 
 ## Use on a website
-Copy `fonts/senklot.css`, `fonts/Senklot[wght,BLSY,BLSX].woff2` and `fonts/Senklot-Italic[wght,BLSY,BLSX].woff2` into the same folder on your site:
+Copy these five files into the same folder on your site (they are all in `web/` in the download):
+`senklot.css`, `Senklot[wght,BLSY,BLSX].woff2`, `Senklot-Italic[wght,BLSY,BLSX].woff2`, `OFL.txt` and `LICENSE-CODE.txt`.
 
 ```html
 <link rel="stylesheet" href="/fonts/senklot.css">
@@ -29,8 +30,8 @@ h1     { font-weight: 600; font-variation-settings: "BLSY" 60, "BLSX" 0; }
 Note: `font-variation-settings` replaces itself as a whole. If you set it, always give both `BLSY` and `BLSX`, and use `font-weight` for weight.
 
 ## Files
-- `fonts/Senklot[wght,BLSY,BLSX].woff2`: variable web font with all weights and both ballast axes (≈72 KB)
-- `fonts/Senklot-Italic[wght,BLSY,BLSX].woff2`: the italic counterpart (≈80 KB)
+- `fonts/Senklot[wght,BLSY,BLSX].woff2`: variable web font with all weights and both ballast axes (≈78 KB)
+- `fonts/Senklot-Italic[wght,BLSY,BLSX].woff2`: the italic counterpart (≈85 KB)
 - `fonts/Senklot[wght,BLSY,BLSX].ttf`, `fonts/Senklot-Italic[wght,BLSY,BLSX].ttf`: variable TTFs (desktop apps)
 - `fonts/static/Senklot-{Light,Regular,Medium,SemiBold,Bold,ExtraBold}{,Italic}.{ttf,woff2}`: 12 static fallbacks (≈10 KB each)
 - `fonts/senklot.css`: ready-to-use `@font-face`
@@ -39,8 +40,8 @@ Note: `font-variation-settings` replaces itself as a whole. If you set it, alway
 ## GitHub Pages
 Push the repository, then in **Settings → Pages** choose *Deploy from a branch*, branch `main`, folder `/docs`. The site is fully static and self-contained.
 
-## Character set (175 glyphs)
-A–Z, a–z, 0–9, Western European accents (À–Ý, à–ÿ, Ç, Ñ, Ø), ß, German and French quotes („“ ‚‘ « » ‹ ›), punctuation, and `@ # % $ € © ° • … − × ~ ^ | \ { } [ ] < >`.
+## Character set (182 glyphs)
+A–Z, a–z, 0–9, German umlauts and ß, accented letters (À–Ý, à–ÿ, Ç, Ñ, Ø, Ÿ), Œ œ Æ æ, ¡ ¿, German and French quotes („“ ‚‘ « » ‹ ›), punctuation, and `@ # % $ € © ° • … − × ~ ^ | \ { } [ ] < >`.
 
 ## Rebuild
 ```bash
@@ -57,17 +58,18 @@ A–Z, a–z, 0–9, Western European accents (À–Ý, à–ÿ, Ç, Ñ, Ø), ß
 All fonts pass the OpenType Sanitizer (OTS), the check browsers run on web fonts.
 
 ## Provenance
-Every outline is generated from original parametric skeletons written for this project (lines plus superellipse arcs, offset by the field). No existing font's outlines, metrics or data were used, traced or derived.
+The outlines are generated from the letter skeletons defined in [`src/glyphs.py`](src/glyphs.py) (lines and superellipse arcs, offset by the field in [`src/engine.py`](src/engine.py)). The build does not use any existing font file as a template.
 
 ## Licence
-Senklot is licensed under the [SIL Open Font License 1.1](OFL.txt): free to use, embed, modify and redistribute, including commercially. The fonts may not be sold on their own. Modified versions must stay under the OFL.
+| What | Licence |
+|------|---------|
+| Font files, `src/glyphs.py` (letter skeletons), `src/kern.fea` (kerning) | [SIL Open Font License 1.1](OFL.txt), Reserved Font Name "Senklot" |
+| Build tools in `src/`, the website in `docs/`, `fonts/senklot.css` | [MIT](src/LICENSE.txt) |
 
-"Senklot" is a **Reserved Font Name**: modified versions must not use the name Senklot. Unmodified copies keep the name. 
-The OFL covers the fonts only. The build scripts in `src/` and the website in `docs/` are under the [MIT licence](src/LICENSE.txt).
-
-When you redistribute the font files (in a theme, app or download), include `OFL.txt`. The zip already has a copy in `web/` next to the web fonts.
+In short: use, embed, modify and redistribute the fonts freely, including commercially. Don't sell the font files on their own. When you redistribute them (in a theme, app or download), include `OFL.txt`. If you distribute a modified version, including a subset you make yourself, give it a different family name unless you have written permission to use "Senklot". The full licence text is what applies.
 
 ## Known limits
 - No TrueType hinting, so rendering at small sizes on Windows is softer. On macOS, iOS and Android it makes no difference.
 - No small caps, ligatures or alternate figures.
-- Coverage is Western European Latin only.
+- No capital ẞ yet.
+- No Central European letters yet (Polish, Czech, Hungarian …).

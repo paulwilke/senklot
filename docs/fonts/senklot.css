@@ -1,5 +1,10 @@
-/* Senklot: drop this file and both .woff2 files next to it into your site.
-   Copyright 2026 The Senklot Project Authors, with Reserved Font Name "Senklot". SIL Open Font License 1.1 (https://openfontlicense.org) */
+/* Senklot web fonts. Keep these files together in one folder:
+   senklot.css, Senklot[wght,BLSY,BLSX].woff2, Senklot-Italic[wght,BLSY,BLSX].woff2,
+   OFL.txt, LICENSE-CODE.txt
+
+   This stylesheet: MIT licence, see LICENSE-CODE.txt.
+   The fonts it loads: Copyright 2026 The Senklot Project Authors, with Reserved Font
+   Name "Senklot". SIL Open Font License 1.1, see OFL.txt (https://openfontlicense.org). */
 @font-face {
   font-family: "Senklot";
   src: url("Senklot[wght,BLSY,BLSX].woff2") format("woff2-variations"),

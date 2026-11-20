@@ -45,6 +45,10 @@ nav.top .lang a[aria-current] { background: var(--ink); color: var(--bg); }
 .hero h1 span { display: inline-block; }
 em { color: var(--accent); }
 .lede { max-width: 640px; font-size: clamp(19px, 2.2vw, 24px); margin-top: 28px; }
+.compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; max-width: 900px; }
+.compare figure { border-top: 1px solid var(--line); padding-top: 10px; }
+.compare div { font-size: clamp(30px, 5vw, 60px); font-weight: 400; line-height: 1.1; }
+.compare figcaption { font-size: 13px; color: var(--muted); margin-top: 4px; font-variant-numeric: tabular-nums; }
 .hint { color: var(--muted); font-size: 14px; margin-top: 18px; }
 .hint button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
 .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
@@ -74,6 +78,7 @@ h3 { font-size: 24px; font-weight: 600; margin-bottom: 10px; line-height: 1.25; 
 .chip { font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: none; color: var(--ink); cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .sample { font-size: clamp(44px, 7vw, 96px); line-height: 1.08; outline: none; overflow-wrap: anywhere; min-height: 2.2em; }
+.edit-hint { font-size: 13px; color: var(--muted); margin-top: 6px; }
 .code { margin-top: 24px; position: relative; }
 pre { font: 14px/1.6 ui-monospace, Menlo, Consolas, monospace; background: var(--card); padding: 18px 20px; border-radius: 12px; overflow-x: auto; white-space: pre; }
 .copy { position: absolute; top: 10px; right: 10px; font: 12px ui-monospace, Menlo, monospace; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
@@ -133,7 +138,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   .wrap { padding: 0 16px; }
   nav.top .links > a:not(.keep) { display: none; }
   .two, .play { grid-template-columns: 1fr; }
-  .states { grid-template-columns: 1fr; }
+  .states, .compare { grid-template-columns: 1fr; }
   .text { columns: 1; }
   .hero h1 { white-space: normal; }
   .wtable div { grid-template-columns: 1fr auto; }
@@ -159,11 +164,16 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
 
   <header class="hero">
     <h1 id="hero" aria-label="Senklot">Senklot</h1>
-    <p class="lede">Eine Groteske mit <em>beweglichem Schwerpunkt</em>. Die Strichstärke hängt davon ab, wo die Tinte sitzt, nicht davon, in welche Richtung der Strich läuft. Verschiebe das Gewicht, und jeder Buchstabe spürt es.</p>
+    <p class="lede">Eine variable Schrift mit <em>beweglichem Schwerpunkt</em>. Zieh das Gewicht nach unten, und die Buchstaben werden an der Grundlinie kräftiger. Beweg es zur Seite, und die Strichstärke wandert mit. Die Zeilenumbrüche bleiben dabei gleich.</p>
+    <div class="compare" aria-label="Dasselbe Wort mit angehobener, ruhender und abgesenkter Masse">
+      <figure><div style="font-variation-settings:'BLSY' -100,'BLSX' 0">Senklot</div><figcaption>BLSY −100 · steigt</figcaption></figure>
+      <figure><div>Senklot</div><figcaption>BLSY 0 · in Ruhe</figcaption></figure>
+      <figure><div style="font-variation-settings:'BLSY' 100,'BLSX' 0">Senklot</div><figcaption>BLSY 100 · sinkt</figcaption></figure>
+    </div>
     <p class="hint" id="hint">Bewege den Zeiger um den Titel oder scrolle schnell, um die Trägheit zu spüren. <button id="tilt" hidden>Neigung aktivieren</button></p>
     <div class="cta">
-      <a class="btn solid" href="../downloads/Senklot.zip" download>Senklot herunterladen</a>
-      <a class="btn" href="#play">Ausprobieren</a>
+      <a class="btn solid" href="../downloads/Senklot.zip" download>Schriftfamilie herunterladen</a>
+      <a class="btn" href="#play">Schrift ausprobieren</a>
     </div>
   </header>
 
@@ -186,10 +196,10 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
     <div class="facts">
       <div><b>2</b><span>Stile: aufrecht und eine echte Kursive</span></div>
       <div><b>300–800</b><span>stufenloses Gewicht, Light bis ExtraBold</span></div>
-      <div><b>2</b><span>Ballast-Achsen, die keine andere Schrift hat</span></div>
-      <div><b>175</b><span>Zeichen, westeuropäisches Latein</span></div>
+      <div><b>2</b><span>Ballast-Achsen für senkrechte und waagerechte Gewichtsverlagerung</span></div>
+      <div><b>182</b><span>Zeichen: Umlaute und ß, œ und æ, ¡ ¿ und Akzentbuchstaben</span></div>
     </div>
-    <div class="prose"><p>Die Achsen lassen sich frei kombinieren. Bold Italic mit nach links abgesunkener Masse ist genauso exakt wie Regular in Ruhe, weil alle fünfzehn Master ohne Näherung interpoliert werden.</p></div>
+    <div class="prose"><p>Die Achsen lassen sich frei kombinieren. Fünfzehn Master pro Stil beschreiben, wie Strichgewicht und Ballast zusammenspielen. So ist Bold Italic mit nach links abgesunkener Masse genauso sorgfältig gezeichnet wie Regular in Ruhe.</p></div>
   </section>
 
   <section id="play">
@@ -212,7 +222,8 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
         </div>
       </div>
       <div>
-        <div class="sample" id="sample" contenteditable="true" spellcheck="false">Schwerkraft, leise am Werk.</div>
+        <div class="sample" id="sample" contenteditable="true" spellcheck="false" aria-label="Beispieltext, bearbeitbar">Schwerkraft, leise am Werk.</div>
+        <p class="edit-hint">Klick in den Text, um deinen eigenen zu schreiben.</p>
         <div class="code"><pre id="css"></pre><button class="copy" data-copy="css">Kopieren</button></div>
       </div>
     </div>
@@ -247,9 +258,9 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   <section>
     <h2>Drei Ruhezustände</h2>
     <div class="states">
-      <figure><div class="s" style="font-variation-settings:'BLSY' 0,'BLSX' 0">Ruhe</div><figcaption><i>Ruhe</i>. Standard. Ein eingebauter Ballast, den man eher spürt als sieht.</figcaption></figure>
-      <figure><div class="s" style="font-variation-settings:'BLSY' 100,'BLSX' 0">Anker</div><figcaption><i>Anker</i>. BLSY 100. Das Gewicht sinkt zur Grundlinie wie ein Senklot.</figcaption></figure>
-      <figure><div class="s" style="font-variation-settings:'BLSY' -100,'BLSX' 0">Ballon</div><figcaption><i>Ballon</i>. BLSY −100. Unten leicht, oben voller Auftrieb.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' 0,'BLSX' 0">Ballast</div><figcaption><i>Ruhe</i>. Standard. Ein eingebauter Ballast, den man eher spürt als sieht.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' 100,'BLSX' 0">Ballast</div><figcaption><i>Anker</i>. BLSY 100. Das Gewicht sinkt zur Grundlinie wie ein Senklot.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' -100,'BLSX' 0">Ballast</div><figcaption><i>Ballon</i>. BLSY −100. Unten leicht, oben voller Auftrieb.</figcaption></figure>
     </div>
   </section>
 
@@ -259,15 +270,15 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <p>Eine vielseitige Textschrift hat zwei Aufgaben. In der Überschrift muss sie hervortreten, im Absatz zurücktreten. In Ruhe ist Senklot eine ruhige, offene Groteske mit großzügiger x-Höhe, weiten Öffnungen und gerade abgeschnittenen Strichenden, die auf dem Raster einrasten.</p>
       <p>Ihr Charakter ist ein leichter Zug nach unten: Querstriche sitzen tief, und Stämme werden zur Grundlinie hin etwas kräftiger. Sie ist <strong>geerdet</strong>, ohne schwer zu sein, und die <em>Kursive</em> behält dieses ruhige Gewicht. Erst wenn du die Masse bewegst, zeigt sich das System.</p>
       <p>Größe, Übermut und Äpfel: Die Umlaute tragen ihren eigenen Ballast. Die Ziffern 0123456789 stehen im selben Lot.</p>
-      <p>Café, naïve, señor, Ørsted, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
+      <p>Café, cœur, naïve, señor, ¡olé!, ¿qué?, Ørsted, Æsir, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
       <p><em>Aufgebaut aus einem parametrischen Strichskelett. Jede Kontur ist eigene Geometrie; nichts ist von einer bestehenden Schrift nachgezeichnet oder abgeleitet.</em></p>
     </div>
   </section>
 
   <section id="glyphs">
-    <h2>Zeichensatz · Zeichen antippen, mit der Maus berühren oder per Tab ansteuern</h2>
+    <h2>Zeichensatz · Zeiger, Antippen oder Pfeiltasten</h2>
     <div class="toggles"><button class="chip" id="gr-it" aria-pressed="false">Kursiv</button></div>
-    <div class="grid" id="grid"></div>
+    <div class="grid" id="grid" role="grid" aria-label="Zeichensatz"></div>
   </section>
 
   <section id="axes">
@@ -275,19 +286,19 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
     <div class="tscroll"><table>
       <thead><tr><th>Achse</th><th>Bereich</th><th>Standard</th><th>Wirkung</th><th>Einstellen mit</th></tr></thead>
       <tbody>
-        <tr><td><code>wght</code></td><td>300 … 800</td><td>400</td><td>Light bis ExtraBold. Mit kräftigeren Strichen wird auch der Abstand weiter.</td><td><code>font-weight</code></td></tr>
+        <tr><td><code>wght</code></td><td>300 … 800</td><td>400</td><td>Light bis ExtraBold. Die Zeichenbreiten wachsen mit dem Gewicht.</td><td><code>font-weight</code></td></tr>
         <tr><td><code>BLSY</code></td><td>−100 … 100</td><td>0</td><td>Masse steigt (−) oder sinkt zur Grundlinie (+). Positiv zieht nach unten, wie ein Lot und wie Bildschirmkoordinaten.</td><td><code>font-variation-settings</code></td></tr>
         <tr><td><code>BLSX</code></td><td>−100 … 100</td><td>0</td><td>Masse wandert nach links (−) oder rechts (+).</td><td><code>font-variation-settings</code></td></tr>
         <tr><td>Kursiv</td><td>Aufrecht / Kursiv</td><td>Aufrecht</td><td>Eigene Datei, wird automatisch gewählt.</td><td><code>font-style: italic</code>, <code>&lt;em&gt;</code></td></tr>
       </tbody>
     </table></div>
-    <div class="prose" style="margin-top:24px"><p>Die Ballast-Achsen ändern nie die Laufweiten. Du kannst sie also in Fließtext animieren, ohne dass etwas umbricht. Die Gewichtsachse ändert die Breiten, wie Gewichtsachsen in jeder Schriftfamilie.</p></div>
+    <div class="prose" style="margin-top:24px"><p>Bei gleichem Schriftgewicht bleiben die Zeichenbreiten entlang beider Ballast-Achsen konstant. Dadurch bleiben die Zeilenumbrüche beim Animieren erhalten. Wenn sich das Gewicht ändert, ändern sich auch die Breiten.</p></div>
   </section>
 
   <section id="use">
     <h2>Auf deiner Website einbinden</h2>
     <ol class="steps">
-      <li><h3>Dateien kopieren</h3><p>Entpacke den Download und kopiere den Inhalt von <code>web/</code> in einen Ordner deiner Website, zum Beispiel <code>/fonts/</code>. Du brauchst <code>senklot.css</code>, die beiden variablen <code>.woff2</code>-Dateien und <code>OFL.txt</code>, damit die Lizenz bei den Schriften bleibt.</p></li>
+      <li><h3>Dateien kopieren</h3><p>Entpacke den Download und kopiere den Inhalt von <code>web/</code> in einen Ordner deiner Website, zum Beispiel <code>/fonts/</code>. Der Ordner enthält fünf Dateien: <code>senklot.css</code>, die beiden variablen <code>.woff2</code>-Dateien, <code>OFL.txt</code> (Lizenz der Schriften) und <code>LICENSE-CODE.txt</code> (Lizenz des Stylesheets). Lass alle fünf zusammen.</p></li>
       <li><h3>Stylesheet einbinden</h3>
         <div class="code"><pre id="c1">&lt;link rel="preload" href="/fonts/Senklot[wght,BLSY,BLSX].woff2" as="font" type="font/woff2" crossorigin&gt;
 &lt;link rel="stylesheet" href="/fonts/senklot.css"&gt;</pre><button class="copy" data-copy="c1">Kopieren</button></div></li>
@@ -333,9 +344,11 @@ if (!reduced) {
         <p style="margin-top:16px;font-size:16px;color:var(--muted)">Alles drin: Webfonts, variable TTFs für Desktop-Programme, 12 statische Schnitte, das README und die Lizenz.</p>
       </div>
       <ul class="files">
-        <li><a href="../fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Aufrecht · 72 KB</span></li>
-        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Kursiv · 80 KB</span></li>
+        <li><a href="../fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Aufrecht · 78 KB</span></li>
+        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Kursiv · 85 KB</span></li>
         <li><a href="../fonts/senklot.css" download>senklot.css</a><span>@font-face, sofort einsatzbereit</span></li>
+        <li><a href="../fonts/OFL.txt" download>OFL.txt</a><span>Lizenz der Schriften</span></li>
+        <li><a href="../fonts/LICENSE-CODE.txt" download>LICENSE-CODE.txt</a><span>Lizenz des Stylesheets</span></li>
         <li><span style="color:inherit">variable/*.ttf</span><span>Desktop-Programme, im Zip</span></li>
         <li><span style="color:inherit">static/ · web/static/</span><span>12 × TTF und WOFF2, je ≈10 KB</span></li>
       </ul>
@@ -348,10 +361,10 @@ if (!reduced) {
       <div class="prose">
         <p>Jedes Zeichen ist ein Skelett aus Geraden und Superellipsen-Bögen. Die Kontur entsteht, indem jeder Punkt dieses Skeletts um eine halbe Strichbreite aus dem Feld versetzt wird:</p>
         <pre style="margin:16px 0">halbe Breite = Basis × Kontrast × (1 + 0.10·v + 0.55·BLSY·v + 0.40·BLSX·u)</pre>
-        <p>Dabei ist <code>u</code> die waagerechte Position ab der Buchstabenmitte (−1 links bis +1 rechts) und <code>v</code> die Höhe, von +1 an der Unterlänge bis etwa −0,7 an der Oberlänge. <code>BLSY</code> und <code>BLSX</code> sind die Achsenwerte geteilt durch 100, also −1 bis +1. Weil jeder Konturpunkt linear von dieser halben Breite abhängt, interpoliert die Schrift exakt zwischen ihren Mastern.</p>
+        <p><code>Kontrast</code> macht waagerechte Striche etwa 12 % leichter als senkrechte, wie bei den meisten Grotesken. Der Rest ist das Feld: <code>u</code> ist die waagerechte Position ab der Buchstabenmitte (−1 links bis +1 rechts) und <code>v</code> die Höhe, von +1 an der Unterlänge bis etwa −0,7 an der Oberlänge. <code>BLSY</code> und <code>BLSX</code> sind die Achsenwerte geteilt durch 100, also −1 bis +1. Weil jeder Konturpunkt linear von dieser halben Breite abhängt, sind die Master von vornherein kompatibel. Beim Schreiben der Schriftdateien werden die Koordinaten auf ganze Einheiten gerundet.</p>
       </div>
       <ul class="plain">
-        <li>15 Master pro Stil, inklusive Ecken für Gewicht × Ballast, damit Kombinationen exakt bleiben.</li>
+        <li>15 Master pro Stil, inklusive Ecken für Gewicht × Ballast, damit Kombinationen keine zusätzliche Korrektur brauchen.</li>
         <li>Mit steigendem Gewicht werden runde Kanten nach innen gezogen, damit Überhänge auf den Hilfslinien bleiben.</li>
         <li>Die Kursive neigt das Skelett um 9°, bevor die Striche entstehen, damit sie ihre senkrechte Dicke behalten.</li>
         <li>Klassen-Kerning für die üblichen Paare, auch für Buchstaben mit Akzent.</li>
@@ -365,22 +378,22 @@ if (!reduced) {
     <div class="two">
       <div class="prose">
         <h3>Herkunft</h3>
-        <p>Senklot wurde aus eigenen parametrischen Skeletten erzeugt, die für dieses Projekt geschrieben wurden. Es wurden keine Konturen, Metriken oder Daten einer bestehenden Schrift verwendet, nachgezeichnet oder abgeleitet.</p>
+        <p>Die Schriftkonturen entstehen aus den in <a href="https://github.com/paulwilke/senklot/blob/main/src/glyphs.py"><code>src/glyphs.py</code></a> definierten Buchstabenskeletten. Der Build verwendet keine bestehende Schriftdatei als Vorlage.</p>
         <h3 style="margin-top:28px">Lizenz</h3>
         <p>Senklot ist frei und offen unter der <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>. Du darfst sie auf Websites, in Apps, im Druck und für kommerzielle Arbeiten nutzen, einbetten, verändern und weitergeben. Die wichtigsten Bedingungen in Kürze:</p>
         <ul class="plain" style="margin-top:12px">
           <li>Die Schriftdateien dürfen nicht für sich allein verkauft werden. Ein Produkt zu verkaufen, das sie nutzt oder mitliefert, ist erlaubt.</li>
           <li>Wer die Schriftdateien weitergibt, zum Beispiel in einem Theme, einer App oder einem Download, muss den Copyright-Hinweis und die Lizenz (<code>OFL.txt</code>) beilegen. Für die Nutzung auf deiner eigenen Website reichen die Dateien auf deinem Server; die Lizenz liegt in <code>web/</code> bereits bei.</li>
-          <li>Veränderte Versionen müssen unter der OFL bleiben und dürfen nicht „Senklot“ heißen. Senklot ist ein reservierter Schriftname (Reserved Font Name).</li>
+          <li>Veränderte Versionen müssen unter der OFL bleiben. Wenn du eine geänderte Fassung weitergibst, auch ein selbst erzeugtes Subset etwa für eine Webfont, wähle einen anderen Familiennamen, sofern du keine ausdrückliche schriftliche Erlaubnis hast, „Senklot“ zu verwenden. Senklot ist ein reservierter Schriftname (Reserved Font Name).</li>
         </ul>
-        <p style="margin-top:12px">Diese Zusammenfassung dient nur der Orientierung. Rechtlich gilt der <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">vollständige englische Lizenztext</a>. Website und Build-Code stehen unter der <a href="https://github.com/paulwilke/senklot/blob/main/src/LICENSE.txt">MIT-Lizenz</a>.</p>
+        <p style="margin-top:12px">Diese Zusammenfassung dient nur der Orientierung. Rechtlich gilt der <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">vollständige englische Lizenztext</a>. Die Buchstabenskelette und das Kerning in <code>src/</code> gehören zur Schrift und stehen ebenfalls unter der OFL. Die Build-Werkzeuge, diese Website und <code>senklot.css</code> stehen unter der <a href="https://github.com/paulwilke/senklot/blob/main/src/LICENSE.txt">MIT-Lizenz</a>.</p>
       </div>
       <div class="prose">
         <h3>Bekannte Grenzen</h3>
         <ul class="plain">
           <li>Kein TrueType-Hinting, daher wirken kleine Größen unter Windows etwas weicher. macOS, iOS und Android sind nicht betroffen.</li>
           <li>Noch keine Kapitälchen, Ligaturen oder alternativen Ziffern.</li>
-          <li>Nur westeuropäisches Latein. Polnische, tschechische und andere mitteleuropäische Buchstaben fehlen.</li>
+          <li>Noch kein großes ẞ und keine mitteleuropäischen Buchstaben (Polnisch, Tschechisch, Ungarisch …).</li>
         </ul>
       </div>
     </div>
@@ -489,7 +502,12 @@ if (!reduced) {
   $('w').addEventListener('input', e => { P.w = +e.target.value; render(); });
   $('sz').addEventListener('input', e => { P.size = +e.target.value; render(); });
   $('it').onclick = () => { P.italic = !P.italic; render(); };
-  $('reset').onclick = () => { swinging = false; Object.assign(P, { y: 0, x: 0, w: 400 }); $('w').value = 400; render(); };
+  $('reset').onclick = () => {
+    swinging = false; $('swing').setAttribute('aria-pressed', false);
+    const size = innerWidth < 760 ? 56 : 80;
+    Object.assign(P, { y: 0, x: 0, w: 400, size, italic: false });
+    $('w').value = 400; $('sz').value = size; render();
+  };
   $('swing').onclick = () => {
     swinging = !swinging; $('swing').setAttribute('aria-pressed', swinging);
     const t0 = performance.now();
@@ -505,16 +523,26 @@ if (!reduced) {
   render();
 
   // ---- glyph grid ----
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿß0123456789.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆàáâãäåçèéêëìíîïñòóôõöøùúûüýÿœæß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
   const grid = $('grid');
   for (const c of chars) {
-    const d = document.createElement('div'); d.textContent = c; d.tabIndex = 0;
+    const d = document.createElement('div'); d.textContent = c; d.tabIndex = grid.children.length ? -1 : 0;
     d.setAttribute('role', 'button'); d.setAttribute('aria-pressed', 'false');
     const toggle = () => d.setAttribute('aria-pressed', d.classList.toggle('on'));
     d.onclick = toggle;
     d.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } };
     grid.appendChild(d);
   }
+  grid.addEventListener('keydown', e => {
+    const cells = [...grid.children], i = cells.indexOf(document.activeElement);
+    if (i < 0) return;
+    const cols = Math.max(1, Math.round(grid.clientWidth / cells[0].offsetWidth));
+    const step = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: cols, ArrowUp: -cols, Home: -i, End: cells.length - 1 - i }[e.key];
+    if (step === undefined) return;
+    e.preventDefault();
+    const j = Math.max(0, Math.min(cells.length - 1, i + step));
+    cells[i].tabIndex = -1; cells[j].tabIndex = 0; cells[j].focus();
+  });
   $('gr-it').onclick = e => { const on = grid.classList.toggle('it'); e.target.setAttribute('aria-pressed', on); };
 
   // ---- copy buttons ----

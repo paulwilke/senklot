@@ -1,4 +1,9 @@
-"""Senklot glyph skeletons. All coordinates are original, constructed here."""
+"""Senklot glyph skeletons. All coordinates are original, constructed here.
+
+Part of the Senklot Font Software.
+Copyright 2026 The Senklot Project Authors, with Reserved Font Name "Senklot".
+Licensed under the SIL Open Font License 1.1 (see OFL.txt), not under the MIT licence of the build tools.
+"""
 import engine
 from engine import G, Path, Dot, se_point, se_angle_for_tangent_through
 
@@ -444,7 +449,7 @@ COMPOSITES = {
     "A": ("grave acute circumflex tilde dieresis ring", 350), "C": ("cedilla", 372),
     "E": ("grave acute circumflex dieresis", 320), "I": ("grave acute circumflex dieresis", 119),
     "N": ("tilde", 371), "O": ("grave acute circumflex tilde dieresis", 375),
-    "U": ("grave acute circumflex dieresis", 359), "Y": ("acute", 325),
+    "U": ("grave acute circumflex dieresis", 359), "Y": ("acute dieresis", 325),
 }
 
 
@@ -548,9 +553,54 @@ def symbols():
           Path().line((220, 300), (160, 300)).caps(("sq", 6)),
           Path().arc(220, 200, 60, 100, 90, 180).to((160, -40)).arc(100, -40, 60, 120, 0, -90).to((70, -160)))
 
+def extras():
+    """Œ œ Æ æ ¡ ¿: built from the same skeleton pieces as their parent letters."""
+    # œ: an o and an e sharing their middle stroke
+    g = glyph("oe", 0x153, 860)
+    g.add(ring(266, 260, 190, 236))
+    cx, rx = 456 + 190, 190
+    g.add(Path().arc(cx, 260, rx, 236, -2, 322).caps(None, ("x", None)),
+          hbar(248, cx - rx, cx + rx).caps(None, ("h", 1.0)))
+    # æ: a bowl (single-storey in italic) joined to an e
+    if ITALIC:
+        g = glyph("ae", 0xE6, 850)
+        R = 420
+        g.add(bowl_left_of_stem(R, rx=180), stem(R, 0, XH))
+    else:
+        g = glyph("ae", 0xE6, 840)
+        R = 420
+        g.add(Path().line((R, 248), (R, 330)).arc(R - 160, 330, 160, LT - 330, 0, 148).caps(None, ("x", None)))
+        bx = 226
+        g.add(Path().line((R, 292), (bx, 292)).arc(bx, (292 + LB) / 2, 142, (292 - LB) / 2, 90, 270)
+              .to((R - 40, LB)))
+    cx, rx = R + 190, 190
+    g.add(Path().arc(cx, 260, rx, 236, -2, 200).caps(None, ("x", None)),
+          Path().arc(cx, 260, rx, 236, 200, 322).caps(None, ("x", None)),
+          hbar(248, R, cx + rx).caps(None, ("h", 1.0)))
+    # Œ: left half of an O closed by an E
+    S = 384
+    g = glyph("OE", 0x152, 836)
+    g.add(Path().arc(S, 350, 262, 326, 90, 270), stem(S, 0, CAP),
+          bar(CAP, S, S + 330), hbar(336, S, S + 290), bar(0, S, S + 340, top=False))
+    # Æ: the A's left leg leaning on an E
+    S = 430
+    g = glyph("AE", 0xC6, 880)
+    a0, a1 = (60, 0), (S, CAP)
+    g.add(diag(a0, a1, 0, CAP), stem(S, 0, CAP), hbar(216, x_at(a0, a1, 216), S),
+          bar(CAP, S - 20, S + 330), hbar(336, S, S + 290), bar(0, S, S + 340, top=False))
+    # ¡ ¿: the ! and ? turned upside down, hanging from the x-height
+    g = glyph("exclamdown", 0xA1, 252)
+    g.add(Dot(126, XH - DOT_R, DOT_R), Path().line((126, 310), (126, DSC)).taper(0.72, 1.0))
+    g = glyph("questiondown", 0xBF, 500)
+    cx, cy = 252, 4
+    g.add(Path().arc(cx, cy, 170, 160, 340, 90).caps(("x", None)),
+          Path().line((cx, cy + 160 - 4), (cx, 310)).taper(None, 0.8), Dot(cx, XH - DOT_R, DOT_R))
+
+
 lc()
 uc()
 figures()
 punct()
 accents()
 symbols()
+extras()

@@ -2,9 +2,15 @@ MIT License
 
 Copyright (c) 2026 The Senklot Project Authors (https://github.com/paulwilke/senklot)
 
-This licence covers the source code in this repository: the build scripts in
-src/ and the website in docs/ (HTML, CSS and JavaScript). It does not cover the
-fonts. The font files are licensed under the SIL Open Font License 1.1, see OFL.txt.
+This licence covers the tools and the website in this repository:
+- the build and helper scripts in src/ (engine.py, geom.py, build.py,
+  build_lib.py, export.py, site.py, i18n.py, proof.py, zoom.py, clip.py),
+- the website in docs/ (HTML, CSS and JavaScript),
+- the stylesheet fonts/senklot.css.
+
+It does not cover the Font Software. The font files and the font sources
+src/glyphs.py (letter skeletons) and src/kern.fea (kerning) are licensed
+under the SIL Open Font License 1.1, see OFL.txt.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
