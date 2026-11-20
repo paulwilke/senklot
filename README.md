@@ -1,6 +1,6 @@
 # Senklot
 
-> I was on my construction site, working with a plumb bob. Watching it swing, I wondered: what if a typeface could sway and settle like that? That’s Senklot.
+> Job site. Plumb bob in my hand. I watched it swing, then settle dead still. And I thought: what if type could do that? So I built it. Meet Senklot.
 
 A sans-serif with a **movable centre of mass**, in Roman and a true Italic. Besides a mild stroke contrast (horizontals about 12 % lighter), stroke thickness comes from a *position field* over each glyph, and two axes move its centre. Three variable axes:
 
