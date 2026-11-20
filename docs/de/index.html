@@ -268,11 +268,11 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   <section>
     <h2>Text in Ruhe</h2>
     <div class="text">
-      <p>Eine vielseitige Textschrift hat zwei Aufgaben. In der Überschrift muss sie hervortreten, im Absatz zurücktreten. In Ruhe ist Senklot eine ruhige, offene Groteske mit großzügiger x-Höhe, weiten Öffnungen und gerade abgeschnittenen Strichenden, die auf dem Raster einrasten.</p>
+      <p>Eine vielseitige Textschrift hat zwei Aufgaben. In der Überschrift muss sie hervortreten, im Absatz zurücktreten. In Ruhe ist Senklot eine ruhige, offene Groteske mit großzügiger x-Höhe, weiten Öffnungen und Strichenden, die nahezu waagerecht oder senkrecht abgeschnitten sind.</p>
       <p>Ihr Charakter ist ein leichter Zug nach unten: Querstriche sitzen tief, und Stämme werden zur Grundlinie hin etwas kräftiger. Sie ist <strong>geerdet</strong>, ohne schwer zu sein, und die <em>Kursive</em> behält dieses ruhige Gewicht. Erst wenn du die Masse bewegst, zeigt sich das System.</p>
       <p>Größe, Übermut und Äpfel: Die Umlaute tragen ihren eigenen Ballast. Die Ziffern 0123456789 stehen im selben Lot.</p>
       <p>Café, cœur, naïve, señor, ¡olé!, ¿qué?, Ørsted, Æsir, Zażółć gęślą jaźń, Příliš žluťoučký kůň, STRAẞE, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
-      <p><em>Aufgebaut aus einem parametrischen Strichskelett. Jede Kontur ist eigene Geometrie; nichts ist von einer bestehenden Schrift nachgezeichnet oder abgeleitet.</em></p>
+      <p><em>Aufgebaut aus parametrischen Strichskeletten. Keine bestehende Schriftdatei wurde als Vorlage verwendet.</em></p>
     </div>
   </section>
 
@@ -342,16 +342,16 @@ if (!reduced) {
     <div class="two">
       <div>
         <a class="btn solid" href="../downloads/Senklot.zip" download>Senklot.zip</a>
-        <p style="margin-top:16px;font-size:16px;color:var(--muted)">Alles drin: Webfonts, variable TTFs für Desktop-Programme, 12 statische Schnitte, das README und die Lizenz.</p>
+        <p style="margin-top:16px;font-size:16px;color:var(--muted)">Alles drin: Webfonts, variable TTFs für Desktop-Programme, 12 statische Schnitte, das README und beide Lizenzen.</p>
       </div>
       <ul class="files">
         <li><a href="../fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Aufrecht · 87 KB</span></li>
-        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Kursiv · 95 KB</span></li>
+        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Kursiv · 96 KB</span></li>
         <li><a href="../fonts/senklot.css" download>senklot.css</a><span>@font-face, sofort einsatzbereit</span></li>
         <li><a href="../fonts/OFL.txt" download>OFL.txt</a><span>Lizenz der Schriften</span></li>
         <li><a href="../fonts/LICENSE-CODE.txt" download>LICENSE-CODE.txt</a><span>Lizenz des Stylesheets</span></li>
         <li><span style="color:inherit">variable/*.ttf</span><span>Desktop-Programme, im Zip</span></li>
-        <li><span style="color:inherit">static/ · web/static/</span><span>12 × TTF und WOFF2, je ≈10 KB</span></li>
+        <li><span style="color:inherit">static/ · web/static/</span><span>12 × TTF (≈40 KB) und WOFF2 (≈11 KB)</span></li>
       </ul>
     </div>
   </section>
@@ -524,7 +524,7 @@ if (!reduced) {
   render();
 
   // ---- glyph grid ----
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆĄĆČĎĘĚŁŃŇŘŚŠŤŮŹŻŽẞàáâãäåçèéêëìíîïñòóôõöøùúûüýÿœæąćčďęěłńňřśšťůźżžß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆĄĆČĎĘĚŁŃŇŘŚŠŤŮŹŻŽẞàáâãäåçèéêëìíîïñòóôõöøùúûüýÿıœæąćčďęěłńňřśšťůźżžß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
   const grid = $('grid');
   for (const c of chars) {
     const d = document.createElement('div'); d.textContent = c; d.tabIndex = grid.children.length ? -1 : 0;

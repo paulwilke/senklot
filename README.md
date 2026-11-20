@@ -31,9 +31,9 @@ Note: `font-variation-settings` replaces itself as a whole. If you set it, alway
 
 ## Files
 - `fonts/Senklot[wght,BLSY,BLSX].woff2`: variable web font with all weights and both ballast axes (≈87 KB)
-- `fonts/Senklot-Italic[wght,BLSY,BLSX].woff2`: the italic counterpart (≈95 KB)
+- `fonts/Senklot-Italic[wght,BLSY,BLSX].woff2`: the italic counterpart (≈96 KB)
 - `fonts/Senklot[wght,BLSY,BLSX].ttf`, `fonts/Senklot-Italic[wght,BLSY,BLSX].ttf`: variable TTFs (desktop apps)
-- `fonts/static/Senklot-{Light,Regular,Medium,SemiBold,Bold,ExtraBold}{,Italic}.{ttf,woff2}`: 12 static fallbacks (≈10 KB each)
+- `fonts/static/Senklot-{Light,Regular,Medium,SemiBold,Bold,ExtraBold}{,Italic}.{ttf,woff2}`: 12 static fallbacks (TTF ≈40 KB, WOFF2 ≈11 KB each)
 - `fonts/senklot.css`: ready-to-use `@font-face`
 - `docs/`: the GitHub Pages site (demo, playground, docs, download zip) in English, German (`docs/de/`) and French (`docs/fr/`). Edit the English page; `src/i18n.py` holds the translations and regenerates the other two. Serve it over HTTP (for example `python3 -m http.server --directory docs`) rather than opening the file directly.
 
@@ -49,11 +49,12 @@ A–Z, a–z, 0–9, German umlauts, ß and ẞ, accented letters (À–Ý, à�
 .venv/bin/python src/build.py --italic   # Italic variable font + woff2
 .venv/bin/python src/export.py           # 12 static instances
 .venv/bin/python src/site.py             # copy web fonts + zip into docs/, generate docs/de and docs/fr
+.venv/bin/python src/clip.py             # optional: render the looping demo video to media/
 ```
 - `src/engine.py`: stroke/field engine
 - `src/glyphs.py`: glyph skeletons
 - `src/kern.fea`: kerning
-- `src/build_lib.py`: gvar assembly. There are 15 masters, with interaction corners for wght×BLSY and wght×BLSX, so interpolation is exact.
+- `src/build_lib.py`: gvar assembly. There are 15 masters, with interaction corners for wght×BLSY and wght×BLSX, so combinations need no extra correction. Coordinates are rounded to whole font units when the fonts are written.
 
 All fonts pass the OpenType Sanitizer (OTS), the check browsers run on web fonts.
 

@@ -268,11 +268,11 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   <section>
     <h2>Le texte au repos</h2>
     <div class="text">
-      <p>Un caractère de texte polyvalent a deux missions. Il doit s’affirmer dans un titre et s’effacer dans un paragraphe. Au repos, Senklot est une linéale calme et ouverte, avec une hauteur d’x généreuse, des ouvertures larges et des terminaisons droites calées sur la grille.</p>
+      <p>Un caractère de texte polyvalent a deux missions. Il doit s’affirmer dans un titre et s’effacer dans un paragraphe. Au repos, Senklot est une linéale calme et ouverte, avec une hauteur d’x généreuse, des ouvertures larges et des fins de trait coupées presque à l’horizontale ou à la verticale.</p>
       <p>Sa personnalité tient à une légère attraction vers le bas : les barres sont basses et les fûts s’épaississent un peu vers la ligne de base. Elle est <strong>ancrée</strong> sans être lourde, et l’<em>italique</em> garde ce même poids tranquille. Ce n’est qu’en déplaçant la masse que le système se révèle.</p>
       <p>Größe, Übermut und Äpfel : les trémas portent leur propre lest. Les chiffres 0123456789 tiennent le même aplomb.</p>
       <p>Café, cœur, naïve, señor, ¡olé!, ¿qué?, Ørsted, Æsir, Zażółć gęślą jaźń, Příliš žluťoučký kůň, STRAẞE, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
-      <p><em>Construit à partir d’un squelette de traits paramétrique. Chaque contour est une géométrie originale ; rien n’est décalqué ni dérivé d’un caractère existant.</em></p>
+      <p><em>Construit à partir de squelettes de traits paramétriques. Aucun fichier de fonte existant n’a servi de modèle.</em></p>
     </div>
   </section>
 
@@ -342,16 +342,16 @@ if (!reduced) {
     <div class="two">
       <div>
         <a class="btn solid" href="../downloads/Senklot.zip" download>Senklot.zip</a>
-        <p style="margin-top:16px;font-size:16px;color:var(--muted)">Tout y est : fontes web, TTF variables pour les applications de bureau, 12 instances statiques, le README et la licence.</p>
+        <p style="margin-top:16px;font-size:16px;color:var(--muted)">Tout y est : fontes web, TTF variables pour les applications de bureau, 12 instances statiques, le README et les deux licences.</p>
       </div>
       <ul class="files">
         <li><a href="../fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Romain · 87 Ko</span></li>
-        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Italique · 95 Ko</span></li>
+        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Italique · 96 Ko</span></li>
         <li><a href="../fonts/senklot.css" download>senklot.css</a><span>@font-face, prêt à l’emploi</span></li>
         <li><a href="../fonts/OFL.txt" download>OFL.txt</a><span>licence des fontes</span></li>
         <li><a href="../fonts/LICENSE-CODE.txt" download>LICENSE-CODE.txt</a><span>licence de la feuille de style</span></li>
         <li><span style="color:inherit">variable/*.ttf</span><span>applications de bureau, dans le zip</span></li>
-        <li><span style="color:inherit">static/ · web/static/</span><span>12 × TTF et WOFF2, ≈10 Ko chacun</span></li>
+        <li><span style="color:inherit">static/ · web/static/</span><span>12 × TTF (≈40 Ko) et WOFF2 (≈11 Ko)</span></li>
       </ul>
     </div>
   </section>
@@ -524,7 +524,7 @@ if (!reduced) {
   render();
 
   // ---- glyph grid ----
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆĄĆČĎĘĚŁŃŇŘŚŠŤŮŹŻŽẞàáâãäåçèéêëìíîïñòóôõöøùúûüýÿœæąćčďęěłńňřśšťůźżžß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆĄĆČĎĘĚŁŃŇŘŚŠŤŮŹŻŽẞàáâãäåçèéêëìíîïñòóôõöøùúûüýÿıœæąćčďęěłńňřśšťůźżžß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
   const grid = $('grid');
   for (const c of chars) {
     const d = document.createElement('div'); d.textContent = c; d.tabIndex = grid.children.length ? -1 : 0;
