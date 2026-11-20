@@ -30,7 +30,7 @@ def main():
         z.write(os.path.join(ROOT, "README.md"), "Senklot/README.md")
         z.write(os.path.join(ROOT, "OFL.txt"), "Senklot/OFL.txt")
         z.write(os.path.join(ROOT, "OFL.txt"), "Senklot/web/OFL.txt")
-        z.write(os.path.join(ROOT, "LICENSE-CODE.txt"), "Senklot/LICENSE-CODE.txt")
+        z.write(os.path.join(ROOT, "src", "LICENSE.txt"), "Senklot/LICENSE-CODE.txt")
         for p in sorted(glob.glob(os.path.join(FONTS, "*.*"))):
             z.write(p, "Senklot/web/" + os.path.basename(p) if p.endswith((".woff2", ".css"))
                     else "Senklot/variable/" + os.path.basename(p))

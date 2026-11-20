@@ -1,5 +1,7 @@
 # Senklot
 
+> I was on my construction site, working with a plumb bob. Watching it swing, I wondered: what if a typeface could sway and settle like that? That’s Senklot.
+
 A sans-serif with a **movable centre of mass**, in Roman and a true Italic. Stroke thickness is a *position field* over each glyph, not a function of stroke direction. Three variable axes:
 
 | Axis | Range | Default | Effect |
@@ -61,7 +63,7 @@ Every outline is generated from original parametric skeletons written for this p
 Senklot is licensed under the [SIL Open Font License 1.1](OFL.txt): free to use, embed, modify and redistribute, including commercially. The fonts may not be sold on their own. Modified versions must stay under the OFL.
 
 "Senklot" is a **Reserved Font Name**: modified versions must not use the name Senklot. Unmodified copies keep the name. 
-The OFL covers the fonts only. The build scripts in `src/` and the website in `docs/` are under the [MIT licence](LICENSE-CODE.txt).
+The OFL covers the fonts only. The build scripts in `src/` and the website in `docs/` are under the [MIT licence](src/LICENSE.txt).
 
 When you redistribute the font files (in a theme, app or download), include `OFL.txt`. The zip already has a copy in `web/` next to the web fonts.
 

@@ -48,6 +48,8 @@ h2 { font-weight: 400; font-size: 15px; letter-spacing: .08em; text-transform: u
 h3 { font-size: 24px; font-weight: 600; margin-bottom: 10px; line-height: 1.25; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 .two > *, .play > * { min-width: 0; }
+.story { font-size: clamp(26px, 3.2vw, 38px) !important; line-height: 1.3; font-style: italic; }
+.story-end { font-size: clamp(26px, 3.2vw, 38px) !important; font-weight: 600; font-variation-settings: "BLSY" 100, "BLSX" 0; }
 .big p { font-size: 21px; max-width: 540px; }
 .big p + p, .prose p + p { margin-top: 16px; }
 .prose { max-width: 720px; }
@@ -154,13 +156,17 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
     </div>
   </header>
 
-  <section>
+  <section id="story">
     <h2>The idea</h2>
     <div class="two big">
-      <p>In traditional type design, stroke thickness follows direction: heavy verticals, light horizontals, perhaps flipped for a western poster. Senklot ignores direction. Its thickness is a field laid over each letter, and that field has a centre of gravity.</p>
       <div>
-        <p>Two axes move that centre. <strong>BLSY</strong> sinks or lifts the mass. <strong>BLSX</strong> drifts it sideways. The skeleton never changes, so text never reflows. Only the ink moves.</p>
-        <p>The dots on i and j, in punctuation and on umlauts are loose ballast. They swell, shrink and drift toward the mass.</p>
+        <p class="story">I was on my construction site, working with a plumb bob. Watching it swing, I wondered: what if a typeface could sway and settle like that?</p>
+        <p class="story-end">That’s Senklot.</p>
+      </div>
+      <div>
+        <p>In most fonts, stroke weight follows direction. In Senklot, each letter has a centre of gravity, and you can move it. Sink it, lift it, drift it sideways.</p>
+        <p>The skeleton stays put, so text never reflows. Only the ink moves. The dots and umlauts swing along like loose ballast.</p>
+        <p style="font-size:16px;color:var(--muted)"><i>Senklot</i> is German for plumb bob. Two axes move its weight: <strong>BLSY</strong> up and down, <strong>BLSX</strong> sideways.</p>
       </div>
     </div>
   </section>
@@ -356,7 +362,7 @@ if (!reduced) {
           <li>When you pass the font files on, for example in a theme, an app or a download, include the copyright notice and the licence (<code>OFL.txt</code>). Using them on a website you run only needs the files on your server; the licence comes along in <code>web/</code>.</li>
           <li>Modified versions must stay under the OFL and must not be called “Senklot”, which is a Reserved Font Name.</li>
         </ul>
-        <p style="margin-top:12px">This summary is for orientation only. The <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">full licence text</a> is what applies. The website and build code are under the <a href="https://github.com/paulwilke/senklot/blob/main/LICENSE-CODE.txt">MIT licence</a>.</p>
+        <p style="margin-top:12px">This summary is for orientation only. The <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">full licence text</a> is what applies. The website and build code are under the <a href="https://github.com/paulwilke/senklot/blob/main/src/LICENSE.txt">MIT licence</a>.</p>
       </div>
       <div class="prose">
         <h3>Known limits</h3>
