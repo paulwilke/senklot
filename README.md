@@ -71,5 +71,4 @@ In short: use, embed, modify and redistribute the fonts freely, including commer
 ## Known limits
 - No TrueType hinting, so rendering at small sizes on Windows is softer. On macOS, iOS and Android it makes no difference.
 - No small caps, ligatures or alternate figures.
-- No capital ẞ yet.
 - No Central European letters yet (Polish, Czech, Hungarian …).
