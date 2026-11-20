@@ -58,7 +58,9 @@ All fonts pass the OpenType Sanitizer (OTS), the check browsers run on web fonts
 Every outline is generated from original parametric skeletons written for this project (lines plus superellipse arcs, offset by the field). No existing font's outlines, metrics or data were used, traced or derived.
 
 ## Licence
-Senklot is licensed under the [SIL Open Font License 1.1](OFL.txt): free to use, embed, modify and redistribute, including commercially. The fonts may not be sold on their own. Modified versions must stay under the OFL. The build scripts in `src/` fall under the same licence.
+Senklot is licensed under the [SIL Open Font License 1.1](OFL.txt): free to use, embed, modify and redistribute, including commercially. The fonts may not be sold on their own. Modified versions must stay under the OFL.
+
+"Senklot" is a **Reserved Font Name**: modified versions must not use the name Senklot. Unmodified copies keep the name. The build scripts in `src/` fall under the same licence.
 
 ## Known limits
 - No TrueType hinting, so rendering at small sizes on Windows is softer. On macOS, iOS and Android it makes no difference.
