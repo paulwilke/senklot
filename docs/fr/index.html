@@ -294,7 +294,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <li><h3>L’utiliser comme n’importe quelle fonte</h3>
         <div class="code"><pre id="c2">body   { font-family: "Senklot", system-ui, sans-serif; }
 strong { font-weight: 700; }
-em     { font-style: italic; }        /* picks the true italic */
+em     { font-style: italic; }        /* choisit la véritable italique */
 h1     { font-weight: 600; }</pre><button class="copy" data-copy="c2">Copier</button></div></li>
       <li><h3>Déplacer le lest</h3>
         <p>La graisse et l’italique passent par le CSS habituel. Les axes de lest passent par <code>font-variation-settings</code>. Cette propriété se remplace en bloc : définissez donc toujours les deux axes ensemble. Les propriétés personnalisées simplifient cela :</p>
@@ -304,7 +304,7 @@ h1     { font-weight: 600; }</pre><button class="copy" data-copy="c2">Copier</bu
 }
 h1:hover { --blsy: 100; }
 
-/* respect people who turn motion off */
+/* respecter ceux qui désactivent les animations */
 @media (prefers-reduced-motion: reduce) {
   h1 { transition: none; }
 }</pre><button class="copy" data-copy="c3">Copier</button></div></li>

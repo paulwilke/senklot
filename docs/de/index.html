@@ -294,7 +294,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <li><h3>Wie jede Schrift verwenden</h3>
         <div class="code"><pre id="c2">body   { font-family: "Senklot", system-ui, sans-serif; }
 strong { font-weight: 700; }
-em     { font-style: italic; }        /* picks the true italic */
+em     { font-style: italic; }        /* wählt die echte Kursive */
 h1     { font-weight: 600; }</pre><button class="copy" data-copy="c2">Kopieren</button></div></li>
       <li><h3>Den Ballast bewegen</h3>
         <p>Gewicht und Kursive funktionieren mit normalem CSS. Die Ballast-Achsen laufen über <code>font-variation-settings</code>. Diese Eigenschaft wird immer als Ganzes ersetzt, setze also beide Achsen zusammen. Mit Custom Properties geht das einfach:</p>
@@ -304,7 +304,7 @@ h1     { font-weight: 600; }</pre><button class="copy" data-copy="c2">Kopieren</
 }
 h1:hover { --blsy: 100; }
 
-/* respect people who turn motion off */
+/* Rücksicht auf alle, die Bewegung abschalten */
 @media (prefers-reduced-motion: reduce) {
   h1 { transition: none; }
 }</pre><button class="copy" data-copy="c3">Kopieren</button></div></li>
@@ -370,7 +370,7 @@ if (!reduced) {
         <p>Senklot ist frei und offen unter der <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>. Du darfst sie auf Websites, in Apps, im Druck und für kommerzielle Arbeiten nutzen, einbetten, verändern und weitergeben. Die wichtigsten Bedingungen in Kürze:</p>
         <ul class="plain" style="margin-top:12px">
           <li>Die Schriftdateien dürfen nicht für sich allein verkauft werden. Ein Produkt zu verkaufen, das sie nutzt oder mitliefert, ist erlaubt.</li>
-          <li>Wer die Schriftdateien weitergibt, zum Beispiel in einem Theme, einer App oder einem Download, muss den Copyright-Hinweis und die Lizenz (<code>OFL.txt</code>) beilegen. Für die Nutzung auf deiner eigenen Website reichen die Dateien auf deinem Server; die Lizenz liegt in <code>web/</code> schon dabei.</li>
+          <li>Wer die Schriftdateien weitergibt, zum Beispiel in einem Theme, einer App oder einem Download, muss den Copyright-Hinweis und die Lizenz (<code>OFL.txt</code>) beilegen. Für die Nutzung auf deiner eigenen Website reichen die Dateien auf deinem Server; die Lizenz liegt in <code>web/</code> bereits bei.</li>
           <li>Veränderte Versionen müssen unter der OFL bleiben und dürfen nicht „Senklot“ heißen. Senklot ist ein reservierter Schriftname (Reserved Font Name).</li>
         </ul>
         <p style="margin-top:12px">Diese Zusammenfassung dient nur der Orientierung. Rechtlich gilt der <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">vollständige englische Lizenztext</a>. Website und Build-Code stehen unter der <a href="https://github.com/paulwilke/senklot/blob/main/src/LICENSE.txt">MIT-Lizenz</a>.</p>
