@@ -241,6 +241,8 @@ S = [
      "Nur westeuropäisches Latein. Polnische, tschechische und andere mitteleuropäische Buchstaben fehlen.",
      "Latin d’Europe de l’Ouest uniquement. Les lettres polonaises, tchèques et d’Europe centrale manquent."),
     (">Source on GitHub</a>", ">Quellcode auf GitHub</a>", ">Code source sur GitHub</a>"),
+    ('<a href="legal/#en">Legal notice &amp; privacy</a>', '<a href="../legal/#de">Impressum &amp; Datenschutz</a>',
+     '<a href="../legal/#fr">Mentions légales &amp; confidentialité</a>'),
     (">Theme: auto</button>", ">Design: auto</button>", ">Thème : auto</button>".replace(" :", NB + ":")),
 
     # ---------------------------------------------------------------- script strings
