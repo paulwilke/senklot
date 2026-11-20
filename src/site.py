@@ -6,7 +6,10 @@ Run after build.py (both styles) and export.py.
 import glob
 import os
 import shutil
+import sys
 import zipfile
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 FONTS = os.path.join(ROOT, "fonts")
@@ -38,6 +41,8 @@ def main():
             sub = "web/static/" if p.endswith(".woff2") else "static/"
             z.write(p, "Senklot/" + sub + os.path.basename(p))
     open(os.path.join(DOCS, ".nojekyll"), "w").close()
+    import i18n
+    i18n.main()
     print("site assembled:", DOCS, f"(zip {os.path.getsize(zpath) // 1024} KB)")
 
 

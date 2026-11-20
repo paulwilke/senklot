@@ -7,6 +7,10 @@
 <meta name="description" content="Senklot is an original variable sans-serif whose stroke weight follows a movable centre of mass. Roman and italic, 300–800, two ballast axes.">
 <meta property="og:title" content="Senklot">
 <meta property="og:description" content="A sans-serif with a movable centre of mass.">
+<link rel="alternate" hreflang="en" href="https://paulwilke.github.io/senklot/">
+<link rel="alternate" hreflang="de" href="https://paulwilke.github.io/senklot/de/">
+<link rel="alternate" hreflang="fr" href="https://paulwilke.github.io/senklot/fr/">
+<link rel="alternate" hreflang="x-default" href="https://paulwilke.github.io/senklot/">
 <link rel="preload" href="fonts/Senklot[wght,BLSY,BLSX].woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/senklot.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2316150f'/><circle cx='16' cy='22' r='6' fill='%23fb923c'/></svg>">
@@ -32,6 +36,9 @@ nav.top { display: flex; justify-content: space-between; align-items: center; ga
 nav.top .links { display: flex; gap: 20px; flex-wrap: wrap; }
 nav.top a { text-decoration: none; }
 nav.top a:hover { color: var(--ink); }
+.lang { display: inline-flex; gap: 2px; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+nav.top .lang a { padding: 2px 8px; border-radius: 999px; font-size: 13px; }
+nav.top .lang a[aria-current] { background: var(--ink); color: var(--bg); }
 .brand { color: var(--ink); font-weight: 600; }
 .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
 .hero h1 { font-weight: 600; font-size: clamp(76px, 20vw, 290px); line-height: .95; letter-spacing: -0.01em; user-select: none; white-space: nowrap; }
@@ -96,6 +103,8 @@ pre { font: 14px/1.6 ui-monospace, Menlo, Consolas, monospace; background: var(-
 .text { columns: 2; column-gap: 48px; font-size: 18px; }
 .text p + p { margin-top: 12px; }
 
+.tscroll { overflow-x: auto; }
+td code { overflow-wrap: anywhere; }
 table { width: 100%; border-collapse: collapse; font-size: 16px; }
 th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font-weight: 600; font-size: 13px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
@@ -106,7 +115,8 @@ td code, p code, li code { font: 0.86em ui-monospace, Menlo, monospace; backgrou
 .steps pre { margin-top: 10px; }
 .files { list-style: none; padding: 0; }
 .files li { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding: 10px 0; font-size: 16px; }
-.files li span { color: var(--muted); white-space: nowrap; font-size: 14px; }
+.files li span { color: var(--muted); font-size: 14px; text-align: right; }
+.files li a { overflow-wrap: anywhere; }
 .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
 .facts div { border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
 .facts b { display: block; font-size: 40px; font-weight: 600; line-height: 1.1; }
@@ -121,7 +131,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
 }
 @media (max-width: 760px) {
   .wrap { padding: 0 16px; }
-  nav.top .links a:not(.keep) { display: none; }
+  nav.top .links > a:not(.keep) { display: none; }
   .two, .play { grid-template-columns: 1fr; }
   .states { grid-template-columns: 1fr; }
   .text { columns: 1; }
@@ -143,6 +153,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <a class="keep" href="#use">Use</a>
       <a class="keep" href="#download">Download</a>
       <a href="#about">Licence</a>
+      <span class="lang"><a href="./" lang="en" aria-current="page">EN</a><a href="de/" lang="de">DE</a><a href="fr/" lang="fr">FR</a></span>
     </div>
   </nav>
 
@@ -261,7 +272,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
 
   <section id="axes">
     <h2>Axes</h2>
-    <table>
+    <div class="tscroll"><table>
       <thead><tr><th>Axis</th><th>Range</th><th>Default</th><th>What it does</th><th>How to set it</th></tr></thead>
       <tbody>
         <tr><td><code>wght</code></td><td>300 … 800</td><td>400</td><td>Light to ExtraBold. Spacing opens up as strokes get heavier.</td><td><code>font-weight</code></td></tr>
@@ -269,7 +280,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
         <tr><td><code>BLSX</code></td><td>−100 … 100</td><td>0</td><td>Mass drifts left (−) or right (+).</td><td><code>font-variation-settings</code></td></tr>
         <tr><td>Italic</td><td>Roman / Italic</td><td>Roman</td><td>Separate file, picked automatically.</td><td><code>font-style: italic</code>, <code>&lt;em&gt;</code></td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="prose" style="margin-top:24px"><p>The ballast axes never change advance widths, so you can animate them on running text without any reflow. The weight axis does change widths, as weight axes in every family do.</p></div>
   </section>
 
@@ -384,6 +395,7 @@ if (!reduced) {
 <script>
 (() => {
   const $ = id => document.getElementById(id);
+  const T = { copy: 'Copy', copied: 'Copied', select: 'Select & copy', theme: 'Theme', auto: 'auto', light: 'light', dark: 'dark', reduced: 'Reduced motion is on, so the headline stays at rest. Try the playground below.' };
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fvs = (y, x) => `"BLSY" ${y.toFixed(1)}, "BLSX" ${x.toFixed(1)}`;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -427,7 +439,7 @@ if (!reduced) {
     requestAnimationFrame(frame);
   }
   if (!reduce) requestAnimationFrame(frame);
-  else $('hint').textContent = 'Reduced motion is on, so the headline stays at rest. Try the playground below.';
+  else $('hint').textContent = T.reduced;
 
   const tb = $('tilt');
   if (!reduce && 'DeviceOrientationEvent' in window && matchMedia('(pointer: coarse)').matches) {
@@ -507,9 +519,9 @@ if (!reduced) {
 
   // ---- copy buttons ----
   document.querySelectorAll('.copy').forEach(b => b.onclick = async () => {
-    try { await navigator.clipboard.writeText($(b.dataset.copy).textContent); b.textContent = 'Copied'; }
-    catch (e) { b.textContent = 'Select & copy'; }
-    setTimeout(() => b.textContent = 'Copy', 1500);
+    try { await navigator.clipboard.writeText($(b.dataset.copy).textContent); b.textContent = T.copied; }
+    catch (e) { b.textContent = T.select; }
+    setTimeout(() => b.textContent = T.copy, 1500);
   });
 
   // ---- theme ----
@@ -517,7 +529,7 @@ if (!reduced) {
   const modes = ['auto', 'light', 'dark'];
   let mode = 'auto';
   try { mode = localStorage.getItem('senklot-theme') || 'auto'; } catch (e) {}
-  const applyTheme = () => { if (mode === 'auto') root.removeAttribute('data-theme'); else root.dataset.theme = mode; tbtn.textContent = 'Theme: ' + mode; };
+  const applyTheme = () => { if (mode === 'auto') root.removeAttribute('data-theme'); else root.dataset.theme = mode; tbtn.textContent = T.theme + ': ' + T[mode]; };
   tbtn.onclick = () => { mode = modes[(modes.indexOf(mode) + 1) % 3]; try { localStorage.setItem('senklot-theme', mode); } catch (e) {} applyTheme(); };
   applyTheme();
 })();

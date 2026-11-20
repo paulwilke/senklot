@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senklot · eine Schrift mit beweglichem Schwerpunkt</title>
+<meta name="description" content="Senklot ist eine eigenständige variable Groteske, deren Strichstärke einem beweglichen Schwerpunkt folgt. Aufrecht und kursiv, 300–800, zwei Ballast-Achsen.">
+<meta property="og:title" content="Senklot">
+<meta property="og:description" content="Eine Groteske mit beweglichem Schwerpunkt.">
+<link rel="alternate" hreflang="en" href="https://paulwilke.github.io/senklot/">
+<link rel="alternate" hreflang="de" href="https://paulwilke.github.io/senklot/de/">
+<link rel="alternate" hreflang="fr" href="https://paulwilke.github.io/senklot/fr/">
+<link rel="alternate" hreflang="x-default" href="https://paulwilke.github.io/senklot/">
+<link rel="preload" href="../fonts/Senklot[wght,BLSY,BLSX].woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/senklot.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2316150f'/><circle cx='16' cy='22' r='6' fill='%23fb923c'/></svg>">
+<style>
+:root {
+  --bg: #f4f1ea; --ink: #16150f; --muted: #6f6b60; --line: #d9d4c7; --accent: #c2410c; --card: #ece8de;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #12110e; --ink: #f1ece0; --muted: #9a9588; --line: #2c2a24; --accent: #fb923c; --card: #1b1a16; }
+}
+:root[data-theme="dark"] { --bg: #12110e; --ink: #f1ece0; --muted: #9a9588; --line: #2c2a24; --accent: #fb923c; --card: #1b1a16; }
+* { box-sizing: border-box; margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: "Senklot", system-ui, sans-serif;
+  font-variation-settings: "BLSY" 0, "BLSX" 0;
+  font-size: 19px; line-height: 1.55; overflow-x: hidden;
+}
+a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+nav.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-size: 15px; color: var(--muted); }
+nav.top .links { display: flex; gap: 20px; flex-wrap: wrap; }
+nav.top a { text-decoration: none; }
+nav.top a:hover { color: var(--ink); }
+.lang { display: inline-flex; gap: 2px; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+nav.top .lang a { padding: 2px 8px; border-radius: 999px; font-size: 13px; }
+nav.top .lang a[aria-current] { background: var(--ink); color: var(--bg); }
+.brand { color: var(--ink); font-weight: 600; }
+.hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+.hero h1 { font-weight: 600; font-size: clamp(76px, 20vw, 290px); line-height: .95; letter-spacing: -0.01em; user-select: none; white-space: nowrap; }
+.hero h1 span { display: inline-block; }
+em { color: var(--accent); }
+.lede { max-width: 640px; font-size: clamp(19px, 2.2vw, 24px); margin-top: 28px; }
+.hint { color: var(--muted); font-size: 14px; margin-top: 18px; }
+.hint button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.btn { display: inline-block; font: inherit; font-size: 16px; font-weight: 600; padding: 12px 20px; border-radius: 999px; border: 1px solid var(--ink); text-decoration: none; cursor: pointer; background: none; color: var(--ink); }
+.btn.solid { background: var(--ink); color: var(--bg); }
+section { padding: 88px 0; border-top: 1px solid var(--line); }
+h2 { font-weight: 400; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+h3 { font-size: 24px; font-weight: 600; margin-bottom: 10px; line-height: 1.25; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.two > *, .play > * { min-width: 0; }
+.story { font-size: clamp(26px, 3.2vw, 38px) !important; line-height: 1.3; font-style: italic; }
+.story-end { font-size: clamp(26px, 3.2vw, 38px) !important; font-weight: 600; font-variation-settings: "BLSY" 100, "BLSX" 0; }
+.big p { font-size: 21px; max-width: 540px; }
+.big p + p, .prose p + p { margin-top: 16px; }
+.prose { max-width: 720px; }
+
+/* playground */
+.play { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+.pad { width: 100%; max-width: 280px; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 18px; position: relative; touch-action: none; cursor: grab;
+  background: linear-gradient(var(--line), var(--line)) center/1px 100% no-repeat, linear-gradient(var(--line), var(--line)) center/100% 1px no-repeat; }
+.pad .ball { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: var(--ink); left: 50%; top: 50%; box-shadow: 0 6px 18px rgba(0,0,0,.18); pointer-events: none; }
+.pad .ax { position: absolute; font-size: 11px; color: var(--muted); pointer-events: none; }
+.ctl { margin-top: 16px; max-width: 280px; }
+.ctl label { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ctl input[type=range] { width: 100%; accent-color: var(--accent); }
+.toggles { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.chip { font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: none; color: var(--ink); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.sample { font-size: clamp(44px, 7vw, 96px); line-height: 1.08; outline: none; overflow-wrap: anywhere; min-height: 2.2em; }
+.code { margin-top: 24px; position: relative; }
+pre { font: 14px/1.6 ui-monospace, Menlo, Consolas, monospace; background: var(--card); padding: 18px 20px; border-radius: 12px; overflow-x: auto; white-space: pre; }
+.copy { position: absolute; top: 10px; right: 10px; font: 12px ui-monospace, Menlo, monospace; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+
+/* weights */
+.wtable div { font-size: clamp(26px, 4vw, 48px); line-height: 1.25; display: grid; grid-template-columns: 1fr 1fr auto; gap: 24px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 8px 0; }
+.wtable small { font-size: 13px; color: var(--muted); font-weight: 400; font-style: normal; white-space: nowrap; }
+.wtable span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* italic */
+.pairs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+.pairs figure { border: 1px solid var(--line); border-radius: 14px; padding: 18px; text-align: center; }
+.pairs .g { font-size: 72px; line-height: 1.1; }
+.pairs figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+.states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.states figure { border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.states .s { font-size: clamp(40px, 6vw, 72px); line-height: 1; }
+.states figcaption { color: var(--muted); font-size: 14px; margin-top: 12px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); border-left: 1px solid var(--line); border-top: 1px solid var(--line); margin-top: 20px; }
+.grid div { aspect-ratio: 1; display: grid; place-items: center; font-size: 44px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: font-variation-settings .5s cubic-bezier(.3,1.6,.5,1); }
+.grid div:hover, .grid div:focus-visible, .grid div.on { font-variation-settings: "BLSY" 100, "BLSX" 0; }
+.grid div:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.grid.it div { font-style: italic; }
+
+.text { columns: 2; column-gap: 48px; font-size: 18px; }
+.text p + p { margin-top: 12px; }
+
+.tscroll { overflow-x: auto; }
+td code { overflow-wrap: anywhere; }
+table { width: 100%; border-collapse: collapse; font-size: 16px; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; font-size: 13px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+td code, p code, li code { font: 0.86em ui-monospace, Menlo, monospace; background: var(--card); padding: 1px 5px; border-radius: 4px; }
+.steps { counter-reset: s; list-style: none; padding: 0; }
+.steps > li { counter-increment: s; position: relative; padding-left: 48px; margin-bottom: 28px; }
+.steps > li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; font-weight: 600; font-size: 15px; }
+.steps pre { margin-top: 10px; }
+.files { list-style: none; padding: 0; }
+.files li { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding: 10px 0; font-size: 16px; }
+.files li span { color: var(--muted); font-size: 14px; text-align: right; }
+.files li a { overflow-wrap: anywhere; }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+.facts div { border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.facts b { display: block; font-size: 40px; font-weight: 600; line-height: 1.1; }
+.facts span { font-size: 14px; color: var(--muted); }
+ul.plain { padding-left: 1.1em; }
+ul.plain li + li { margin-top: 8px; }
+footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.theme { font: inherit; color: inherit; background: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .facts, .pairs { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  nav.top .links > a:not(.keep) { display: none; }
+  .two, .play { grid-template-columns: 1fr; }
+  .states { grid-template-columns: 1fr; }
+  .text { columns: 1; }
+  .hero h1 { white-space: normal; }
+  .wtable div { grid-template-columns: 1fr auto; }
+  .wtable span:nth-child(2) { display: none; }
+  section { padding: 64px 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top">
+    <a class="brand" href="#">Senklot</a>
+    <div class="links">
+      <a href="#play">Ausprobieren</a>
+      <a href="#italic">Kursiv</a>
+      <a href="#glyphs">Zeichen</a>
+      <a class="keep" href="#use">Einbinden</a>
+      <a class="keep" href="#download">Download</a>
+      <a href="#about">Lizenz</a>
+      <span class="lang"><a href="../" lang="en">EN</a><a href="./" lang="de" aria-current="page">DE</a><a href="../fr/" lang="fr">FR</a></span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1 id="hero" aria-label="Senklot">Senklot</h1>
+    <p class="lede">Eine Groteske mit <em>beweglichem Schwerpunkt</em>. Die Strichstärke hängt davon ab, wo die Tinte sitzt, nicht davon, in welche Richtung der Strich läuft. Verschiebe das Gewicht, und jeder Buchstabe spürt es.</p>
+    <p class="hint" id="hint">Bewege den Zeiger um den Titel oder scrolle schnell, um die Trägheit zu spüren. <button id="tilt" hidden>Neigung aktivieren</button></p>
+    <div class="cta">
+      <a class="btn solid" href="../downloads/Senklot.zip" download>Senklot herunterladen</a>
+      <a class="btn" href="#play">Ausprobieren</a>
+    </div>
+  </header>
+
+  <section id="story">
+    <h2>Die Idee</h2>
+    <div class="two big">
+      <div>
+        <p class="story">Ich war auf meiner Baustelle und arbeitete mit einem Senklot. Als ich ihm beim Pendeln zusah, fragte ich mich: Was, wenn eine Schrift so schwingen und zur Ruhe kommen könnte?</p>
+        <p class="story-end">Das ist Senklot.</p>
+      </div>
+      <div>
+        <p>In den meisten Schriften folgt die Strichstärke der Richtung. In Senklot hat jeder Buchstabe einen Schwerpunkt, und du kannst ihn bewegen: absenken, anheben, zur Seite schieben.</p>
+        <p>Das Skelett bleibt, wo es ist, also läuft der Text nie um. Nur die Tinte bewegt sich. Punkte und Umlaute schwingen mit wie loser Ballast.</p>
+        <p style="font-size:16px;color:var(--muted)">Ein <i>Senklot</i> ist das Lot der Bauleute. Zwei Achsen bewegen sein Gewicht: <strong>BLSY</strong> auf und ab, <strong>BLSX</strong> zur Seite.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="facts">
+      <div><b>2</b><span>Stile: aufrecht und eine echte Kursive</span></div>
+      <div><b>300–800</b><span>stufenloses Gewicht, Light bis ExtraBold</span></div>
+      <div><b>2</b><span>Ballast-Achsen, die keine andere Schrift hat</span></div>
+      <div><b>175</b><span>Zeichen, westeuropäisches Latein</span></div>
+    </div>
+    <div class="prose"><p>Die Achsen lassen sich frei kombinieren. Bold Italic mit nach links abgesunkener Masse ist genauso exakt wie Regular in Ruhe, weil alle fünfzehn Master ohne Näherung interpoliert werden.</p></div>
+  </section>
+
+  <section id="play">
+    <h2>Ausprobieren</h2>
+    <div class="play">
+      <div>
+        <div class="pad" id="pad" role="slider" aria-label="Position des Ballasts" tabindex="0" aria-valuetext="BLSY 0, BLSX 0">
+          <span class="ax" style="top:6px;left:50%;transform:translateX(-50%)">steigt</span>
+          <span class="ax" style="bottom:6px;left:50%;transform:translateX(-50%)">sinkt</span>
+          <span class="ax" style="left:8px;top:50%;transform:translateY(-140%)">links</span>
+          <span class="ax" style="right:8px;top:50%;transform:translateY(-140%)">rechts</span>
+          <div class="ball" id="ball"></div>
+        </div>
+        <div class="ctl"><label for="w"><span>Gewicht</span><span id="wv">400</span></label><input id="w" type="range" min="300" max="800" value="400"></div>
+        <div class="ctl"><label for="sz"><span>Größe</span><span id="szv">80 px</span></label><input id="sz" type="range" min="16" max="160" value="80"></div>
+        <div class="toggles">
+          <button class="chip" id="it" aria-pressed="false">Kursiv</button>
+          <button class="chip" id="reset">Zurücksetzen</button>
+          <button class="chip" id="swing">Pendeln</button>
+        </div>
+      </div>
+      <div>
+        <div class="sample" id="sample" contenteditable="true" spellcheck="false">Schwerkraft, leise am Werk.</div>
+        <div class="code"><pre id="css"></pre><button class="copy" data-copy="css">Kopieren</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sechs Gewichte · zwei Stile · zwei Dateien</h2>
+    <div class="wtable">
+      <div style="font-weight:300"><span>Leichtigkeit</span><span style="font-style:italic">trägt weit</span><small>Light 300</small></div>
+      <div style="font-weight:400"><span>Gewicht mit</span><span style="font-style:italic">Haltung</span><small>Regular 400</small></div>
+      <div style="font-weight:500"><span>Ruhe im Lot</span><span style="font-style:italic">bleibt ruhig</span><small>Medium 500</small></div>
+      <div style="font-weight:600"><span>Schwerpunkt</span><span style="font-style:italic">finden</span><small>SemiBold 600</small></div>
+      <div style="font-weight:700"><span>Senkrecht</span><span style="font-style:italic">&amp; sicher</span><small>Bold 700</small></div>
+      <div style="font-weight:800"><span>Ballast</span><span style="font-style:italic">an Bord</span><small>ExtraBold 800</small></div>
+    </div>
+  </section>
+
+  <section id="italic">
+    <h2>Die Kursive</h2>
+    <div class="two big">
+      <p>Senklot Italic ist eine echte Kursive, keine schräg gestellte Aufrechte. Das Skelett wird um 9° geneigt, <em>bevor</em> die Striche gezeichnet werden. So behält jeder Strich seine echte Dicke, statt gestaucht zu werden.</p>
+      <p>Mehrere Buchstaben sind neu gezeichnet. Das <em>a</em> wird einstöckig, das <em>f</em> reicht unter die Grundlinie und schwingt zurück, und die Stämme von <em>a d i h m n u</em> laufen in kleine Auslaufstriche aus. Der Ballast funktioniert weiter: In der Kursiven sammelt sich die Masse in diesen Ausläufen.</p>
+    </div>
+    <div class="pairs">
+      <figure><div class="g">a<i>a</i></div><figcaption>einstöckiges a</figcaption></figure>
+      <figure><div class="g">f<i>f</i></div><figcaption>f mit Unterlänge</figcaption></figure>
+      <figure><div class="g">n<i>n</i></div><figcaption>Auslaufstrich</figcaption></figure>
+      <figure><div class="g">d<i>d</i></div><figcaption>Auslaufstrich</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Drei Ruhezustände</h2>
+    <div class="states">
+      <figure><div class="s" style="font-variation-settings:'BLSY' 0,'BLSX' 0">Ruhe</div><figcaption><i>Ruhe</i>. Standard. Ein eingebauter Ballast, den man eher spürt als sieht.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' 100,'BLSX' 0">Anker</div><figcaption><i>Anker</i>. BLSY 100. Das Gewicht sinkt zur Grundlinie wie ein Senklot.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' -100,'BLSX' 0">Ballon</div><figcaption><i>Ballon</i>. BLSY −100. Unten leicht, oben voller Auftrieb.</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Text in Ruhe</h2>
+    <div class="text">
+      <p>Eine vielseitige Textschrift hat zwei Aufgaben. In der Überschrift muss sie hervortreten, im Absatz zurücktreten. In Ruhe ist Senklot eine ruhige, offene Groteske mit großzügiger x-Höhe, weiten Öffnungen und gerade abgeschnittenen Strichenden, die auf dem Raster einrasten.</p>
+      <p>Ihr Charakter ist ein leichter Zug nach unten: Querstriche sitzen tief, und Stämme werden zur Grundlinie hin etwas kräftiger. Sie ist <strong>geerdet</strong>, ohne schwer zu sein, und die <em>Kursive</em> behält dieses ruhige Gewicht. Erst wenn du die Masse bewegst, zeigt sich das System.</p>
+      <p>Größe, Übermut und Äpfel: Die Umlaute tragen ihren eigenen Ballast. Die Ziffern 0123456789 stehen im selben Lot.</p>
+      <p>Café, naïve, señor, Ørsted, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
+      <p><em>Aufgebaut aus einem parametrischen Strichskelett. Jede Kontur ist eigene Geometrie; nichts ist von einer bestehenden Schrift nachgezeichnet oder abgeleitet.</em></p>
+    </div>
+  </section>
+
+  <section id="glyphs">
+    <h2>Zeichensatz · Zeichen antippen, mit der Maus berühren oder per Tab ansteuern</h2>
+    <div class="toggles"><button class="chip" id="gr-it" aria-pressed="false">Kursiv</button></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="axes">
+    <h2>Achsen</h2>
+    <div class="tscroll"><table>
+      <thead><tr><th>Achse</th><th>Bereich</th><th>Standard</th><th>Wirkung</th><th>Einstellen mit</th></tr></thead>
+      <tbody>
+        <tr><td><code>wght</code></td><td>300 … 800</td><td>400</td><td>Light bis ExtraBold. Mit kräftigeren Strichen wird auch der Abstand weiter.</td><td><code>font-weight</code></td></tr>
+        <tr><td><code>BLSY</code></td><td>−100 … 100</td><td>0</td><td>Masse steigt (−) oder sinkt zur Grundlinie (+). Positiv zieht nach unten, wie ein Lot und wie Bildschirmkoordinaten.</td><td><code>font-variation-settings</code></td></tr>
+        <tr><td><code>BLSX</code></td><td>−100 … 100</td><td>0</td><td>Masse wandert nach links (−) oder rechts (+).</td><td><code>font-variation-settings</code></td></tr>
+        <tr><td>Kursiv</td><td>Aufrecht / Kursiv</td><td>Aufrecht</td><td>Eigene Datei, wird automatisch gewählt.</td><td><code>font-style: italic</code>, <code>&lt;em&gt;</code></td></tr>
+      </tbody>
+    </table></div>
+    <div class="prose" style="margin-top:24px"><p>Die Ballast-Achsen ändern nie die Laufweiten. Du kannst sie also in Fließtext animieren, ohne dass etwas umbricht. Die Gewichtsachse ändert die Breiten, wie Gewichtsachsen in jeder Schriftfamilie.</p></div>
+  </section>
+
+  <section id="use">
+    <h2>Auf deiner Website einbinden</h2>
+    <ol class="steps">
+      <li><h3>Dateien kopieren</h3><p>Entpacke den Download und kopiere den Inhalt von <code>web/</code> in einen Ordner deiner Website, zum Beispiel <code>/fonts/</code>. Du brauchst <code>senklot.css</code>, die beiden variablen <code>.woff2</code>-Dateien und <code>OFL.txt</code>, damit die Lizenz bei den Schriften bleibt.</p></li>
+      <li><h3>Stylesheet einbinden</h3>
+        <div class="code"><pre id="c1">&lt;link rel="preload" href="/fonts/Senklot[wght,BLSY,BLSX].woff2" as="font" type="font/woff2" crossorigin&gt;
+&lt;link rel="stylesheet" href="/fonts/senklot.css"&gt;</pre><button class="copy" data-copy="c1">Kopieren</button></div></li>
+      <li><h3>Wie jede Schrift verwenden</h3>
+        <div class="code"><pre id="c2">body   { font-family: "Senklot", system-ui, sans-serif; }
+strong { font-weight: 700; }
+em     { font-style: italic; }        /* picks the true italic */
+h1     { font-weight: 600; }</pre><button class="copy" data-copy="c2">Kopieren</button></div></li>
+      <li><h3>Den Ballast bewegen</h3>
+        <p>Gewicht und Kursive funktionieren mit normalem CSS. Die Ballast-Achsen laufen über <code>font-variation-settings</code>. Diese Eigenschaft wird immer als Ganzes ersetzt, setze also beide Achsen zusammen. Mit Custom Properties geht das einfach:</p>
+        <div class="code"><pre id="c3">h1 {
+  font-variation-settings: "BLSY" var(--blsy, 0), "BLSX" var(--blsx, 0);
+  transition: font-variation-settings .6s cubic-bezier(.3, 1.6, .5, 1);
+}
+h1:hover { --blsy: 100; }
+
+/* respect people who turn motion off */
+@media (prefers-reduced-motion: reduce) {
+  h1 { transition: none; }
+}</pre><button class="copy" data-copy="c3">Kopieren</button></div></li>
+      <li><h3>Mit JavaScript animieren</h3>
+        <p>Das steuert die Custom Properties aus Schritt 4. So behält das CSS dort die Kontrolle, und reduzierte Bewegung wird respektiert.</p>
+        <div class="code"><pre id="c4">const el = document.querySelector("h1");
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!reduced) {
+  addEventListener("pointermove", e =&gt; {
+    const y = (e.clientY / innerHeight * 2 - 1) * 100;
+    const x = (e.clientX / innerWidth  * 2 - 1) * 100;
+    el.style.setProperty("--blsy", y.toFixed(1));
+    el.style.setProperty("--blsx", x.toFixed(1));
+  }, { passive: true });
+}</pre><button class="copy" data-copy="c4">Kopieren</button></div></li>
+    </ol>
+    <div class="prose"><p>Browser-Unterstützung: Variable Fonts mit eigenen Achsen funktionieren in allen aktuellen Versionen von Chrome, Edge, Safari und Firefox. Für ältere Browser oder Umgebungen ohne Variable Fonts bieten die statischen Dateien in <code>web/static/</code> sechs feste Gewichte pro Stil, ohne Ballast-Achsen.</p></div>
+  </section>
+
+  <section id="download">
+    <h2>Download</h2>
+    <div class="two">
+      <div>
+        <a class="btn solid" href="../downloads/Senklot.zip" download>Senklot.zip</a>
+        <p style="margin-top:16px;font-size:16px;color:var(--muted)">Alles drin: Webfonts, variable TTFs für Desktop-Programme, 12 statische Schnitte, das README und die Lizenz.</p>
+      </div>
+      <ul class="files">
+        <li><a href="../fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Aufrecht · 72 KB</span></li>
+        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Kursiv · 80 KB</span></li>
+        <li><a href="../fonts/senklot.css" download>senklot.css</a><span>@font-face, sofort einsatzbereit</span></li>
+        <li><span style="color:inherit">variable/*.ttf</span><span>Desktop-Programme, im Zip</span></li>
+        <li><span style="color:inherit">static/ · web/static/</span><span>12 × TTF und WOFF2, je ≈10 KB</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2>Wie sie entsteht</h2>
+    <div class="two">
+      <div class="prose">
+        <p>Jedes Zeichen ist ein Skelett aus Geraden und Superellipsen-Bögen. Die Kontur entsteht, indem jeder Punkt dieses Skeletts um eine halbe Strichbreite aus dem Feld versetzt wird:</p>
+        <pre style="margin:16px 0">halbe Breite = Basis × Kontrast × (1 + 0.10·v + 0.55·BLSY·v + 0.40·BLSX·u)</pre>
+        <p>Dabei ist <code>u</code> die waagerechte Position ab der Buchstabenmitte (−1 links bis +1 rechts) und <code>v</code> die Höhe, von +1 an der Unterlänge bis etwa −0,7 an der Oberlänge. <code>BLSY</code> und <code>BLSX</code> sind die Achsenwerte geteilt durch 100, also −1 bis +1. Weil jeder Konturpunkt linear von dieser halben Breite abhängt, interpoliert die Schrift exakt zwischen ihren Mastern.</p>
+      </div>
+      <ul class="plain">
+        <li>15 Master pro Stil, inklusive Ecken für Gewicht × Ballast, damit Kombinationen exakt bleiben.</li>
+        <li>Mit steigendem Gewicht werden runde Kanten nach innen gezogen, damit Überhänge auf den Hilfslinien bleiben.</li>
+        <li>Die Kursive neigt das Skelett um 9°, bevor die Striche entstehen, damit sie ihre senkrechte Dicke behalten.</li>
+        <li>Klassen-Kerning für die üblichen Paare, auch für Buchstaben mit Akzent.</li>
+        <li>Alle Dateien bestehen den OpenType Sanitizer, die Prüfung, die Browser bei Webfonts durchführen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>Lizenz, Herkunft, Grenzen</h2>
+    <div class="two">
+      <div class="prose">
+        <h3>Herkunft</h3>
+        <p>Senklot wurde aus eigenen parametrischen Skeletten erzeugt, die für dieses Projekt geschrieben wurden. Es wurden keine Konturen, Metriken oder Daten einer bestehenden Schrift verwendet, nachgezeichnet oder abgeleitet.</p>
+        <h3 style="margin-top:28px">Lizenz</h3>
+        <p>Senklot ist frei und offen unter der <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>. Du darfst sie auf Websites, in Apps, im Druck und für kommerzielle Arbeiten nutzen, einbetten, verändern und weitergeben. Die wichtigsten Bedingungen in Kürze:</p>
+        <ul class="plain" style="margin-top:12px">
+          <li>Die Schriftdateien dürfen nicht für sich allein verkauft werden. Ein Produkt zu verkaufen, das sie nutzt oder mitliefert, ist erlaubt.</li>
+          <li>Wer die Schriftdateien weitergibt, zum Beispiel in einem Theme, einer App oder einem Download, muss den Copyright-Hinweis und die Lizenz (<code>OFL.txt</code>) beilegen. Für die Nutzung auf deiner eigenen Website reichen die Dateien auf deinem Server; die Lizenz liegt in <code>web/</code> schon dabei.</li>
+          <li>Veränderte Versionen müssen unter der OFL bleiben und dürfen nicht „Senklot“ heißen. Senklot ist ein reservierter Schriftname (Reserved Font Name).</li>
+        </ul>
+        <p style="margin-top:12px">Diese Zusammenfassung dient nur der Orientierung. Rechtlich gilt der <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">vollständige englische Lizenztext</a>. Website und Build-Code stehen unter der <a href="https://github.com/paulwilke/senklot/blob/main/src/LICENSE.txt">MIT-Lizenz</a>.</p>
+      </div>
+      <div class="prose">
+        <h3>Bekannte Grenzen</h3>
+        <ul class="plain">
+          <li>Kein TrueType-Hinting, daher wirken kleine Größen unter Windows etwas weicher. macOS, iOS und Android sind nicht betroffen.</li>
+          <li>Noch keine Kapitälchen, Ligaturen oder alternativen Ziffern.</li>
+          <li>Nur westeuropäisches Latein. Polnische, tschechische und andere mitteleuropäische Buchstaben fehlen.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Senklot · SIL Open Font License 1.1 · <a href="https://github.com/paulwilke/senklot">Quellcode auf GitHub</a></span>
+    <button class="theme" id="theme">Design: auto</button>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const T = { copy: 'Kopieren', copied: 'Kopiert', select: 'Markieren & kopieren', theme: 'Design', auto: 'auto', light: 'hell', dark: 'dunkel', reduced: 'Reduzierte Bewegung ist aktiv, deshalb bleibt die Überschrift ruhig. Probiere es weiter unten aus.' };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fvs = (y, x) => `"BLSY" ${y.toFixed(1)}, "BLSX" ${x.toFixed(1)}`;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+  // ---- hero: per-letter damped springs ----
+  const hero = $('hero');
+  const letters = [...hero.textContent].map(ch => {
+    const s = document.createElement('span'); s.textContent = ch; s.setAttribute('aria-hidden', 'true'); return s;
+  });
+  hero.textContent = ''; letters.forEach(s => hero.appendChild(s));
+  const st = letters.map(() => ({ y: 0, x: 0, vy: 0, vx: 0 }));
+  let px = null, py = null, impulse = 0, tilt = null, heroVisible = true;
+  addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; }, { passive: true });
+  document.addEventListener('pointerleave', () => { px = py = null; });
+  let lastY = scrollY;
+  addEventListener('scroll', () => { const d = scrollY - lastY; lastY = scrollY; impulse += clamp(d, -80, 80) * 9; }, { passive: true });
+  new IntersectionObserver(es => { heroVisible = es[0].isIntersecting; }).observe(hero);
+
+  const K = 120, C = 14;
+  let last = performance.now();
+  function frame(t) {
+    const dt = Math.min(0.033, (t - last) / 1000); last = t;
+    if (heroVisible) letters.forEach((el, i) => {
+      const s = st[i];
+      let ty = 0, tx = 0;
+      if (tilt) { ty = tilt.y; tx = tilt.x; }
+      else if (px !== null) {
+        const r = el.getBoundingClientRect();
+        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const near = Math.exp(-Math.hypot(px - cx, py - cy) / 700);
+        ty = clamp((py - cy) / (r.height * 0.7), -1, 1) * 100 * near;
+        tx = clamp((px - cx) / (r.width * 1.2), -1, 1) * 100 * near;
+      }
+      s.vy += (K * (ty - s.y) - C * s.vy) * dt - impulse * dt * (1 - i * 0.06);
+      s.vx += (K * (tx - s.x) - C * s.vx) * dt;
+      s.y = clamp(s.y + s.vy * dt, -100, 100);
+      s.x = clamp(s.x + s.vx * dt, -100, 100);
+      el.style.fontVariationSettings = fvs(s.y, s.x);
+    });
+    impulse *= 0.5;
+    requestAnimationFrame(frame);
+  }
+  if (!reduce) requestAnimationFrame(frame);
+  else $('hint').textContent = T.reduced;
+
+  const tb = $('tilt');
+  if (!reduce && 'DeviceOrientationEvent' in window && matchMedia('(pointer: coarse)').matches) {
+    tb.hidden = false;
+    tb.onclick = async () => {
+      try { if (DeviceOrientationEvent.requestPermission) await DeviceOrientationEvent.requestPermission(); } catch (e) {}
+      addEventListener('deviceorientation', e => {
+        tilt = { x: clamp((e.gamma || 0) / 35, -1, 1) * 100, y: clamp(((e.beta || 45) - 45) / 35, -1, 1) * 100 };
+      });
+      tb.hidden = true;
+    };
+  }
+
+  // ---- playground ----
+  const P = { y: 0, x: 0, w: 400, size: 80, italic: false };
+  const pad = $('pad'), ball = $('ball'), sample = $('sample'), css = $('css');
+  function render() {
+    ball.style.left = (P.x / 200 + 0.5) * 100 + '%';
+    ball.style.top = (P.y / 200 + 0.5) * 100 + '%';
+    sample.style.fontVariationSettings = fvs(P.y, P.x);
+    sample.style.fontWeight = P.w;
+    sample.style.fontStyle = P.italic ? 'italic' : 'normal';
+    sample.style.fontSize = P.size + 'px';
+    $('wv').textContent = P.w; $('szv').textContent = P.size + ' px';
+    $('it').setAttribute('aria-pressed', P.italic);
+    const Y = Math.round(P.y), X = Math.round(P.x);
+    pad.setAttribute('aria-valuetext', `BLSY ${Y}, BLSX ${X}`);
+    css.textContent = `font-family: "Senklot", sans-serif;\nfont-size: ${P.size}px;\nfont-weight: ${P.w};\n` +
+      (P.italic ? 'font-style: italic;\n' : '') + `font-variation-settings: "BLSY" ${Y}, "BLSX" ${X};`;
+  }
+  function setPad(cx, cy) {
+    const r = pad.getBoundingClientRect();
+    P.x = (clamp((cx - r.left) / r.width, 0, 1) * 2 - 1) * 100;
+    P.y = (clamp((cy - r.top) / r.height, 0, 1) * 2 - 1) * 100;
+    render();
+  }
+  let drag = false, swinging = false;
+  pad.addEventListener('pointerdown', e => { drag = true; swinging = false; pad.setPointerCapture(e.pointerId); setPad(e.clientX, e.clientY); });
+  pad.addEventListener('pointermove', e => drag && setPad(e.clientX, e.clientY));
+  pad.addEventListener('pointerup', () => drag = false);
+  pad.addEventListener('keydown', e => {
+    const d = e.shiftKey ? 25 : 5, k = e.key;
+    if (k === 'ArrowUp') P.y -= d; else if (k === 'ArrowDown') P.y += d;
+    else if (k === 'ArrowLeft') P.x -= d; else if (k === 'ArrowRight') P.x += d; else return;
+    e.preventDefault(); P.y = clamp(P.y, -100, 100); P.x = clamp(P.x, -100, 100); render();
+  });
+  $('w').addEventListener('input', e => { P.w = +e.target.value; render(); });
+  $('sz').addEventListener('input', e => { P.size = +e.target.value; render(); });
+  $('it').onclick = () => { P.italic = !P.italic; render(); };
+  $('reset').onclick = () => { swinging = false; Object.assign(P, { y: 0, x: 0, w: 400 }); $('w').value = 400; render(); };
+  $('swing').onclick = () => {
+    swinging = !swinging; $('swing').setAttribute('aria-pressed', swinging);
+    const t0 = performance.now();
+    const step = t => {
+      if (!swinging) { $('swing').setAttribute('aria-pressed', false); return; }
+      const s = (t - t0) / 1000;
+      P.y = Math.sin(s * 1.6) * 90; P.x = Math.sin(s * 1.1 + 1) * 70; render();
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  if (innerWidth < 760) { P.size = 56; $('sz').value = 56; }
+  render();
+
+  // ---- glyph grid ----
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿß0123456789.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
+  const grid = $('grid');
+  for (const c of chars) {
+    const d = document.createElement('div'); d.textContent = c; d.tabIndex = 0;
+    d.setAttribute('role', 'button'); d.setAttribute('aria-pressed', 'false');
+    const toggle = () => d.setAttribute('aria-pressed', d.classList.toggle('on'));
+    d.onclick = toggle;
+    d.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } };
+    grid.appendChild(d);
+  }
+  $('gr-it').onclick = e => { const on = grid.classList.toggle('it'); e.target.setAttribute('aria-pressed', on); };
+
+  // ---- copy buttons ----
+  document.querySelectorAll('.copy').forEach(b => b.onclick = async () => {
+    try { await navigator.clipboard.writeText($(b.dataset.copy).textContent); b.textContent = T.copied; }
+    catch (e) { b.textContent = T.select; }
+    setTimeout(() => b.textContent = T.copy, 1500);
+  });
+
+  // ---- theme ----
+  const root = document.documentElement, tbtn = $('theme');
+  const modes = ['auto', 'light', 'dark'];
+  let mode = 'auto';
+  try { mode = localStorage.getItem('senklot-theme') || 'auto'; } catch (e) {}
+  const applyTheme = () => { if (mode === 'auto') root.removeAttribute('data-theme'); else root.dataset.theme = mode; tbtn.textContent = T.theme + ': ' + T[mode]; };
+  tbtn.onclick = () => { mode = modes[(modes.indexOf(mode) + 1) % 3]; try { localStorage.setItem('senklot-theme', mode); } catch (e) {} applyTheme(); };
+  applyTheme();
+})();
+</script>
+</body>
+</html>

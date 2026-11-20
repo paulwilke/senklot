@@ -34,7 +34,7 @@ Note: `font-variation-settings` replaces itself as a whole. If you set it, alway
 - `fonts/Senklot[wght,BLSY,BLSX].ttf`, `fonts/Senklot-Italic[wght,BLSY,BLSX].ttf`: variable TTFs (desktop apps)
 - `fonts/static/Senklot-{Light,Regular,Medium,SemiBold,Bold,ExtraBold}{,Italic}.{ttf,woff2}`: 12 static fallbacks (≈10 KB each)
 - `fonts/senklot.css`: ready-to-use `@font-face`
-- `docs/`: the GitHub Pages site (demo, playground, docs, download zip). Serve it over HTTP (for example `python3 -m http.server --directory docs`) rather than opening the file directly.
+- `docs/`: the GitHub Pages site (demo, playground, docs, download zip) in English, German (`docs/de/`) and French (`docs/fr/`). Edit the English page; `src/i18n.py` holds the translations and regenerates the other two. Serve it over HTTP (for example `python3 -m http.server --directory docs`) rather than opening the file directly.
 
 ## GitHub Pages
 Push the repository, then in **Settings → Pages** choose *Deploy from a branch*, branch `main`, folder `/docs`. The site is fully static and self-contained.
@@ -47,7 +47,7 @@ A–Z, a–z, 0–9, Western European accents (À–Ý, à–ÿ, Ç, Ñ, Ø), ß
 .venv/bin/python src/build.py            # Roman variable font + woff2
 .venv/bin/python src/build.py --italic   # Italic variable font + woff2
 .venv/bin/python src/export.py           # 12 static instances
-.venv/bin/python src/site.py             # copy web fonts + zip into docs/
+.venv/bin/python src/site.py             # copy web fonts + zip into docs/, generate docs/de and docs/fr
 ```
 - `src/engine.py`: stroke/field engine
 - `src/glyphs.py`: glyph skeletons
