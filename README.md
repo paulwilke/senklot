@@ -30,8 +30,8 @@ h1     { font-weight: 600; font-variation-settings: "BLSY" 60, "BLSX" 0; }
 Note: `font-variation-settings` replaces itself as a whole. If you set it, always give both `BLSY` and `BLSX`, and use `font-weight` for weight.
 
 ## Files
-- `fonts/Senklot[wght,BLSY,BLSX].woff2`: variable web font with all weights and both ballast axes (≈78 KB)
-- `fonts/Senklot-Italic[wght,BLSY,BLSX].woff2`: the italic counterpart (≈85 KB)
+- `fonts/Senklot[wght,BLSY,BLSX].woff2`: variable web font with all weights and both ballast axes (≈87 KB)
+- `fonts/Senklot-Italic[wght,BLSY,BLSX].woff2`: the italic counterpart (≈95 KB)
 - `fonts/Senklot[wght,BLSY,BLSX].ttf`, `fonts/Senklot-Italic[wght,BLSY,BLSX].ttf`: variable TTFs (desktop apps)
 - `fonts/static/Senklot-{Light,Regular,Medium,SemiBold,Bold,ExtraBold}{,Italic}.{ttf,woff2}`: 12 static fallbacks (≈10 KB each)
 - `fonts/senklot.css`: ready-to-use `@font-face`
@@ -40,8 +40,8 @@ Note: `font-variation-settings` replaces itself as a whole. If you set it, alway
 ## GitHub Pages
 Push the repository, then in **Settings → Pages** choose *Deploy from a branch*, branch `main`, folder `/docs`. The site is fully static and self-contained.
 
-## Character set (182 glyphs)
-A–Z, a–z, 0–9, German umlauts and ß, accented letters (À–Ý, à–ÿ, Ç, Ñ, Ø, Ÿ), Œ œ Æ æ, ¡ ¿, German and French quotes („“ ‚‘ « » ‹ ›), punctuation, and `@ # % $ € © ° • … − × ~ ^ | \ { } [ ] < >`.
+## Character set (217 glyphs)
+A–Z, a–z, 0–9, German umlauts, ß and ẞ, accented letters (À–Ý, à–ÿ, Ç, Ñ, Ø, Ÿ), Œ œ Æ æ, ¡ ¿, Polish (Ą Ć Ę Ł Ń Ś Ź Ż) and Czech (Č Ď Ě Ň Ř Š Ť Ů Ž) in both cases, German and French quotes („“ ‚‘ « » ‹ ›), punctuation, and `@ # % $ € © ° • … − × ~ ^ | \ { } [ ] < >`.
 
 ## Rebuild
 ```bash
@@ -71,4 +71,4 @@ In short: use, embed, modify and redistribute the fonts freely, including commer
 ## Known limits
 - No TrueType hinting, so rendering at small sizes on Windows is softer. On macOS, iOS and Android it makes no difference.
 - No small caps, ligatures or alternate figures.
-- No Central European letters yet (Polish, Czech, Hungarian …).
+- Not yet: Hungarian, Romanian, Slovak, Turkish and Baltic letters.

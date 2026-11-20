@@ -432,6 +432,11 @@ def mark(kind, cx, cap=False):
         return [Dot(cx - 100, b + 78, 42), Dot(cx + 100, b + 78, 42)]
     if kind == "ring":
         return [ring(cx, b + (70 if cap else 84), 66, 60 if cap else 66, wscale=0.62)]
+    if kind == "caron":
+        return [diag((cx - 96, b + hgt), (cx - 12, b + 4), b + hgt, b + 4),
+                diag((cx + 12, b + 4), (cx + 96, b + hgt), b + 4, b + hgt)]
+    if kind == "dotaccent":
+        return [Dot(cx, b + (56 if cap else 70), 46)]
     if kind == "cedilla":
         return [Path().line((cx + 10, 30), (cx + 10, -50)).arc(cx - 40, -50, 50, 66, 0, -150)
                 .caps(None, ("x", None))]
@@ -439,17 +444,28 @@ def mark(kind, cx, cap=False):
 
 
 MARK_UNI = {"grave": "GRAVE", "acute": "ACUTE", "circumflex": "CIRCUMFLEX", "tilde": "TILDE",
-            "dieresis": "DIAERESIS", "ring": "RING ABOVE", "cedilla": "CEDILLA"}
+            "dieresis": "DIAERESIS", "ring": "RING ABOVE", "cedilla": "CEDILLA",
+            "caron": "CARON", "ogonek": "OGONEK", "dotaccent": "DOT ABOVE"}
+# where the ogonek hangs: the bottom right of each letter's ink
+OGONEK_X = {"a": 548 if ITALIC else 432, "e": 330, "A": 606, "E": 496}
+
+
+def ogonek(x):
+    """Small hook below the baseline that curls back to the right (Polish ą ę)."""
+    return Path(wscale=0.85).line((x, 30), (x, -70)).arc(x + 52, -70, 52, 76, 180, 312).caps(None, ("x", None))
 COMPOSITES = {
-    "a": ("grave acute circumflex tilde dieresis ring", 268 if ITALIC else 250),
-    "c": ("cedilla", 280), "e": ("grave acute circumflex dieresis", 282),
-    "i": ("grave acute circumflex dieresis", 99), "n": ("tilde", 283),
-    "o": ("grave acute circumflex tilde dieresis", 286), "u": ("grave acute circumflex dieresis", 283),
+    "a": ("grave acute circumflex tilde dieresis ring ogonek", 268 if ITALIC else 250),
+    "c": ("cedilla acute caron", 280), "e": ("grave acute circumflex dieresis caron ogonek", 282),
+    "i": ("grave acute circumflex dieresis", 99), "n": ("tilde acute caron", 283),
+    "o": ("grave acute circumflex tilde dieresis", 286), "u": ("grave acute circumflex dieresis ring", 283),
     "y": ("acute dieresis", 262),
-    "A": ("grave acute circumflex tilde dieresis ring", 350), "C": ("cedilla", 372),
-    "E": ("grave acute circumflex dieresis", 320), "I": ("grave acute circumflex dieresis", 119),
-    "N": ("tilde", 371), "O": ("grave acute circumflex tilde dieresis", 375),
-    "U": ("grave acute circumflex dieresis", 359), "Y": ("acute dieresis", 325),
+    "s": ("acute caron", 250), "z": ("acute caron dotaccent", 252), "r": ("caron", 200),
+    "A": ("grave acute circumflex tilde dieresis ring ogonek", 350), "C": ("cedilla acute caron", 372),
+    "E": ("grave acute circumflex dieresis caron ogonek", 320), "I": ("grave acute circumflex dieresis", 119),
+    "N": ("tilde acute caron", 371), "O": ("grave acute circumflex tilde dieresis", 375),
+    "U": ("grave acute circumflex dieresis ring", 359), "Y": ("acute dieresis", 325),
+    "S": ("acute caron", 305), "Z": ("acute caron dotaccent", 312), "R": ("caron", 290),
+    "D": ("caron", 300), "T": ("caron", 305),
 }
 
 
@@ -470,7 +486,28 @@ def accents():
                 g.items = list(src.items)
                 g.add(Dot(cx - 84, LC_MB + 78, 40), Dot(cx + 84, LC_MB + 78, 40))
                 continue
+            if m == "ogonek":
+                g.add(ogonek(OGONEK_X[base]))
+                continue
             g.add(*mark(m, mx, cap))
+    # Czech ď ť: the caron becomes a small apostrophe beside the ascender
+    def caron_apostrophe(x, top):
+        return Path().line((x + 12, top), (x - 10, top - 150)).taper(1.0, 0.55)
+    d = by["d"]
+    g = glyph("dcaron", 0x10F, d.adv + 70)
+    g.items = list(d.items)
+    g.add(caron_apostrophe(484 + 120, ASC + 10))
+    t = by["t"]
+    g = glyph("tcaron", 0x165, t.adv + 40)
+    g.items = list(t.items)
+    g.add(caron_apostrophe(150 + 110, 690))
+    # Polish Ł ł: a stroke through the stem
+    g = glyph("Lslash", 0x141, by["L"].adv)
+    g.items = list(by["L"].items)
+    g.add(Path().line((30, 250), (250, 430)))
+    g = glyph("lslash", 0x142, by["l"].adv + 20)
+    g.items = list(by["l"].items)
+    g.add(Path().line((20, 300), (200, 470)))
     # slashed o
     g = glyph("oslash", 0xF8, by["o"].adv)
     g.items = list(by["o"].items)
@@ -588,6 +625,13 @@ def extras():
     a0, a1 = (60, 0), (S, CAP)
     g.add(diag(a0, a1, 0, CAP), stem(S, 0, CAP), hbar(216, x_at(a0, a1, 216), S),
           bar(CAP, S - 20, S + 330), hbar(336, S, S + 290), bar(0, S, S + 340, top=False))
+    # ẞ: capital sharp s. Stem with a flat top, a diagonal back to the middle and a round lower bowl
+    L = 109
+    g = glyph("Germandbls", 0x1E9E, 660, zone="cap")
+    g.add(Path().line((L, 0), (L, 520)).arc(L + 150, 520, 150, CT - 520, 180, 90).to((L + 400, CT)),
+          Path().line((L + 410, CT + 2), (L + 190, 410)),
+          Path().line((L + 170, 410), (L + 230, 410)).arc(L + 230, (410 + CB) / 2, 214, (410 - CB) / 2, 90, -150)
+          .caps(None, ("x", None)))
     # ¡ ¿: the ! and ? turned upside down, hanging from the x-height
     g = glyph("exclamdown", 0xA1, 252)
     g.add(Dot(126, XH - DOT_R, DOT_R), Path().line((126, 310), (126, DSC)).taper(0.72, 1.0))

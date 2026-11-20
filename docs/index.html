@@ -123,7 +123,8 @@ td code, p code, li code { font: 0.86em ui-monospace, Menlo, monospace; backgrou
 .files li span { color: var(--muted); font-size: 14px; text-align: right; }
 .files li a { overflow-wrap: anywhere; }
 .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
-.facts div { border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.facts div { border: 1px solid var(--line); border-radius: 14px; padding: 18px; min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+@media (max-width: 420px) { .facts { grid-template-columns: 1fr; } }
 .facts b { display: block; font-size: 40px; font-weight: 600; line-height: 1.1; }
 .facts span { font-size: 14px; color: var(--muted); }
 ul.plain { padding-left: 1.1em; }
@@ -197,7 +198,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <div><b>2</b><span>styles: Roman and a true Italic</span></div>
       <div><b>300–800</b><span>continuous weight, Light to ExtraBold</span></div>
       <div><b>2</b><span>ballast axes for vertical and horizontal weight shift</span></div>
-      <div><b>182</b><span>glyphs: umlauts and ß, œ and æ, ¡ ¿ and accented letters</span></div>
+      <div><b>217</b><span>glyphs: Western European, Polish and Czech, ß and ẞ included</span></div>
     </div>
     <div class="prose"><p>The axes combine freely. Fifteen masters per style describe how stroke weight and ballast work together, so Bold Italic with the mass sunk to the left is drawn as carefully as Regular at rest.</p></div>
   </section>
@@ -270,7 +271,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <p>A versatile text typeface has to do two jobs. It must step forward in a headline and step back in a paragraph. At rest, Senklot is a calm, open sans with a generous x-height, wide apertures and squared terminals that snap to the grid.</p>
       <p>Its personality is a slight downward pull: crossbars sit low and stems swell a touch toward the baseline. It is <strong>grounded</strong> without being heavy, and the <em>italic</em> keeps that same quiet weight. Only when you move the mass does the system reveal itself.</p>
       <p>Größe, Übermut und Äpfel: the umlauts carry their own ballast. The figures 0123456789 stand on the same plumb line.</p>
-      <p>Café, cœur, naïve, señor, ¡olé!, ¿qué?, Ørsted, Æsir, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
+      <p>Café, cœur, naïve, señor, ¡olé!, ¿qué?, Ørsted, Æsir, Zażółć gęślą jaźń, Příliš žluťoučký kůň, STRAẞE, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
       <p><em>Built from a parametric stroke skeleton. Every outline is original geometry; nothing is traced or derived from an existing font.</em></p>
     </div>
   </section>
@@ -344,8 +345,8 @@ if (!reduced) {
         <p style="margin-top:16px;font-size:16px;color:var(--muted)">Everything: web fonts, variable TTFs for desktop apps, 12 static instances, the README and the licence.</p>
       </div>
       <ul class="files">
-        <li><a href="fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Roman · 78 KB</span></li>
-        <li><a href="fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Italic · 85 KB</span></li>
+        <li><a href="fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Roman · 87 KB</span></li>
+        <li><a href="fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Italic · 95 KB</span></li>
         <li><a href="fonts/senklot.css" download>senklot.css</a><span>@font-face, ready to use</span></li>
         <li><a href="fonts/OFL.txt" download>OFL.txt</a><span>licence of the fonts</span></li>
         <li><a href="fonts/LICENSE-CODE.txt" download>LICENSE-CODE.txt</a><span>licence of the stylesheet</span></li>
@@ -393,7 +394,7 @@ if (!reduced) {
         <ul class="plain">
           <li>No TrueType hinting, so small sizes on Windows look slightly softer. macOS, iOS and Android are unaffected.</li>
           <li>No small caps, ligatures or alternate figures yet.</li>
-          <li>No Central European letters yet (Polish, Czech, Hungarian …).</li>
+          <li>Not yet: Hungarian, Romanian, Slovak, Turkish and Baltic letters.</li>
         </ul>
       </div>
     </div>
@@ -523,7 +524,7 @@ if (!reduced) {
   render();
 
   // ---- glyph grid ----
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆàáâãäåçèéêëìíîïñòóôõöøùúûüýÿœæß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆĄĆČĎĘĚŁŃŇŘŚŠŤŮŹŻŽẞàáâãäåçèéêëìíîïñòóôõöøùúûüýÿœæąćčďęěłńňřśšťůźżžß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
   const grid = $('grid');
   for (const c of chars) {
     const d = document.createElement('div'); d.textContent = c; d.tabIndex = grid.children.length ? -1 : 0;

@@ -5,10 +5,10 @@
 languagesystem DFLT dflt;
 languagesystem latn dflt;
 
-@L_ROUND = [o c d e g q a s oacute ograve ocircumflex otilde odieresis oslash ccedilla eacute egrave ecircumflex edieresis aacute agrave acircumflex atilde adieresis aring];
+@L_ROUND = [o c d e g q a s oacute ograve ocircumflex otilde odieresis oslash ccedilla eacute egrave ecircumflex edieresis aacute agrave acircumflex atilde adieresis aring cacute ccaron ecaron eogonek aogonek sacute scaron dcaron oe ae];
 @L_DIAG = [v w y x yacute ydieresis];
-@U_ROUND = [O C G Q Oacute Ograve Ocircumflex Otilde Odieresis Oslash Ccedilla];
-@U_A = [A Aacute Agrave Acircumflex Atilde Adieresis Aring];
+@U_ROUND = [O C G Q Oacute Ograve Ocircumflex Otilde Odieresis Oslash Ccedilla Cacute Ccaron];
+@U_A = [A Aacute Agrave Acircumflex Atilde Adieresis Aring Aogonek];
 @PUNCT_LOW = [period comma ellipsis quotesinglbase quotedblbase];
 
 feature kern {

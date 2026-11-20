@@ -123,7 +123,8 @@ td code, p code, li code { font: 0.86em ui-monospace, Menlo, monospace; backgrou
 .files li span { color: var(--muted); font-size: 14px; text-align: right; }
 .files li a { overflow-wrap: anywhere; }
 .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
-.facts div { border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.facts div { border: 1px solid var(--line); border-radius: 14px; padding: 18px; min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+@media (max-width: 420px) { .facts { grid-template-columns: 1fr; } }
 .facts b { display: block; font-size: 40px; font-weight: 600; line-height: 1.1; }
 .facts span { font-size: 14px; color: var(--muted); }
 ul.plain { padding-left: 1.1em; }
@@ -197,7 +198,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <div><b>2</b><span>styles : romain et une véritable italique</span></div>
       <div><b>300–800</b><span>graisse continue, de Light à ExtraBold</span></div>
       <div><b>2</b><span>axes de lest pour déplacer le poids verticalement et horizontalement</span></div>
-      <div><b>182</b><span>glyphes : trémas et ß, œ et æ, ¡ ¿ et lettres accentuées</span></div>
+      <div><b>217</b><span>glyphes : Europe de l’Ouest, polonais et tchèque, ß et ẞ compris</span></div>
     </div>
     <div class="prose"><p>Les axes se combinent librement. Quinze masters par style décrivent l’interaction entre graisse et lest, si bien qu’un Bold Italic dont la masse est descendue à gauche est dessiné avec autant de soin qu’un Regular au repos.</p></div>
   </section>
@@ -270,7 +271,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <p>Un caractère de texte polyvalent a deux missions. Il doit s’affirmer dans un titre et s’effacer dans un paragraphe. Au repos, Senklot est une linéale calme et ouverte, avec une hauteur d’x généreuse, des ouvertures larges et des terminaisons droites calées sur la grille.</p>
       <p>Sa personnalité tient à une légère attraction vers le bas : les barres sont basses et les fûts s’épaississent un peu vers la ligne de base. Elle est <strong>ancrée</strong> sans être lourde, et l’<em>italique</em> garde ce même poids tranquille. Ce n’est qu’en déplaçant la masse que le système se révèle.</p>
       <p>Größe, Übermut und Äpfel : les trémas portent leur propre lest. Les chiffres 0123456789 tiennent le même aplomb.</p>
-      <p>Café, cœur, naïve, señor, ¡olé!, ¿qué?, Ørsted, Æsir, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
+      <p>Café, cœur, naïve, señor, ¡olé!, ¿qué?, Ørsted, Æsir, Zażółć gęślą jaźń, Příliš žluťoučký kůň, STRAẞE, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
       <p><em>Construit à partir d’un squelette de traits paramétrique. Chaque contour est une géométrie originale ; rien n’est décalqué ni dérivé d’un caractère existant.</em></p>
     </div>
   </section>
@@ -344,8 +345,8 @@ if (!reduced) {
         <p style="margin-top:16px;font-size:16px;color:var(--muted)">Tout y est : fontes web, TTF variables pour les applications de bureau, 12 instances statiques, le README et la licence.</p>
       </div>
       <ul class="files">
-        <li><a href="../fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Romain · 78 Ko</span></li>
-        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Italique · 85 Ko</span></li>
+        <li><a href="../fonts/Senklot[wght,BLSY,BLSX].woff2" download>Senklot[wght,BLSY,BLSX].woff2</a><span>Romain · 87 Ko</span></li>
+        <li><a href="../fonts/Senklot-Italic[wght,BLSY,BLSX].woff2" download>Senklot-Italic[wght,BLSY,BLSX].woff2</a><span>Italique · 95 Ko</span></li>
         <li><a href="../fonts/senklot.css" download>senklot.css</a><span>@font-face, prêt à l’emploi</span></li>
         <li><a href="../fonts/OFL.txt" download>OFL.txt</a><span>licence des fontes</span></li>
         <li><a href="../fonts/LICENSE-CODE.txt" download>LICENSE-CODE.txt</a><span>licence de la feuille de style</span></li>
@@ -393,7 +394,7 @@ if (!reduced) {
         <ul class="plain">
           <li>Pas de hinting TrueType : les petites tailles paraissent un peu plus douces sous Windows. macOS, iOS et Android ne sont pas concernés.</li>
           <li>Pas encore de petites capitales, de ligatures ni de chiffres alternatifs.</li>
-          <li>Pas encore de lettres d’Europe centrale (polonais, tchèque, hongrois…).</li>
+          <li>Pas encore de lettres hongroises, roumaines, slovaques, turques ni baltes.</li>
         </ul>
       </div>
     </div>
@@ -523,7 +524,7 @@ if (!reduced) {
   render();
 
   // ---- glyph grid ----
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆàáâãäåçèéêëìíîïñòóôõöøùúûüýÿœæß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝŸŒÆĄĆČĎĘĚŁŃŇŘŚŠŤŮŹŻŽẞàáâãäåçèéêëìíîïñòóôõöøùúûüýÿœæąćčďęěłńňřśšťůźżžß0123456789¡¿.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
   const grid = $('grid');
   for (const c of chars) {
     const d = document.createElement('div'); d.textContent = c; d.tabIndex = grid.children.length ? -1 : 0;
