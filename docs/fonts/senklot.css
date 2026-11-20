@@ -1,0 +1,25 @@
+/* Senklot: drop this file and both .woff2 files next to it into your site.
+   Copyright 2026 The Senklot Project Authors. SIL Open Font License 1.1 (https://openfontlicense.org) */
+@font-face {
+  font-family: "Senklot";
+  src: url("Senklot[wght,BLSY,BLSX].woff2") format("woff2-variations"),
+       url("Senklot[wght,BLSY,BLSX].woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Senklot";
+  src: url("Senklot-Italic[wght,BLSY,BLSX].woff2") format("woff2-variations"),
+       url("Senklot-Italic[wght,BLSY,BLSX].woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Optional helpers for the ballast axes.
+   BLSY: -100 (mass rises) … 100 (mass sinks)   BLSX: -100 (left) … 100 (right) */
+:root { --blsy: 0; --blsx: 0; }
+.senklot-ballast {
+  font-variation-settings: "BLSY" var(--blsy), "BLSX" var(--blsx);
+}

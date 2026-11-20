@@ -1,0 +1,43 @@
+languagesystem DFLT dflt;
+languagesystem latn dflt;
+
+@L_ROUND = [o c d e g q a s oacute ograve ocircumflex otilde odieresis oslash ccedilla eacute egrave ecircumflex edieresis aacute agrave acircumflex atilde adieresis aring];
+@L_DIAG = [v w y x yacute ydieresis];
+@U_ROUND = [O C G Q Oacute Ograve Ocircumflex Otilde Odieresis Oslash Ccedilla];
+@U_A = [A Aacute Agrave Acircumflex Atilde Adieresis Aring];
+@PUNCT_LOW = [period comma ellipsis quotesinglbase quotedblbase];
+
+feature kern {
+    pos T @L_ROUND -70;
+    pos T [r u n m p z s x v w y uacute ugrave ucircumflex udieresis ntilde yacute ydieresis] -60;
+    pos T @U_A -60;
+    pos @U_A T -60;
+    pos T @PUNCT_LOW -80;
+    pos T @U_ROUND -18;
+    pos @U_ROUND T -18;
+    pos [V W] @L_ROUND -50;
+    pos [V W] @U_A -50;
+    pos @U_A [V W] -50;
+    pos [V W] @PUNCT_LOW -70;
+    pos Y @L_ROUND -80;
+    pos Y @U_A -60;
+    pos @U_A Y -60;
+    pos Y @PUNCT_LOW -80;
+    pos [V W Y] @U_ROUND -14;
+    pos @U_ROUND [V W Y] -14;
+    pos L [T V W Y] -70;
+    pos L quoteright -80;
+    pos P @U_A -40;
+    pos P @PUNCT_LOW -90;
+    pos F @PUNCT_LOW -60;
+    pos F @U_A -30;
+    pos @U_A @U_ROUND -10;
+    pos @U_ROUND @U_A -10;
+    pos @L_DIAG @PUNCT_LOW -50;
+    pos r @PUNCT_LOW -60;
+    pos f @PUNCT_LOW -30;
+    pos @U_A [v w y] -24;
+    pos [k x] @L_ROUND -14;
+    pos @L_ROUND [v w y x] -10;
+    pos [v w y] @L_ROUND -10;
+} kern;
