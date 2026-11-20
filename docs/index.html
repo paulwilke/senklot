@@ -87,7 +87,8 @@ pre { font: 14px/1.6 ui-monospace, Menlo, Consolas, monospace; background: var(-
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); border-left: 1px solid var(--line); border-top: 1px solid var(--line); margin-top: 20px; }
 .grid div { aspect-ratio: 1; display: grid; place-items: center; font-size: 44px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: font-variation-settings .5s cubic-bezier(.3,1.6,.5,1); }
-.grid div:hover { font-variation-settings: "BLSY" 100, "BLSX" 0; }
+.grid div:hover, .grid div:focus-visible, .grid div.on { font-variation-settings: "BLSY" 100, "BLSX" 0; }
+.grid div:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .grid.it div { font-style: italic; }
 
 .text { columns: 2; column-gap: 48px; font-size: 18px; }
@@ -139,13 +140,14 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <a href="#glyphs">Glyphs</a>
       <a class="keep" href="#use">Use</a>
       <a class="keep" href="#download">Download</a>
+      <a href="#about">Licence</a>
     </div>
   </nav>
 
   <header class="hero">
     <h1 id="hero" aria-label="Senklot">Senklot</h1>
     <p class="lede">A sans-serif with a <em>movable centre of mass</em>. Stroke weight depends on where the ink sits, not on which way the stroke runs. Move the weight, and every letter feels it.</p>
-    <p class="hint" id="hint">Move your pointer around the word, or scroll quickly. <button id="tilt" hidden>Enable tilt</button></p>
+    <p class="hint" id="hint">Move your pointer around the title, or scroll quickly to feel its inertia. <button id="tilt" hidden>Enable tilt</button></p>
     <div class="cta">
       <a class="btn solid" href="downloads/Senklot.zip" download>Download Senklot</a>
       <a class="btn" href="#play">Try it</a>
@@ -155,7 +157,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   <section>
     <h2>The idea</h2>
     <div class="two big">
-      <p>In every typeface so far, stroke thickness follows direction: heavy verticals, light horizontals, perhaps flipped for a western poster. Senklot ignores direction. Its thickness is a field laid over each letter, and that field has a centre of gravity.</p>
+      <p>In traditional type design, stroke thickness follows direction: heavy verticals, light horizontals, perhaps flipped for a western poster. Senklot ignores direction. Its thickness is a field laid over each letter, and that field has a centre of gravity.</p>
       <div>
         <p>Two axes move that centre. <strong>BLSY</strong> sinks or lifts the mass. <strong>BLSX</strong> drifts it sideways. The skeleton never changes, so text never reflows. Only the ink moves.</p>
         <p>The dots on i and j, in punctuation and on umlauts are loose ballast. They swell, shrink and drift toward the mass.</p>
@@ -228,16 +230,16 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   <section>
     <h2>Three resting states</h2>
     <div class="states">
-      <figure><div class="s" style="font-variation-settings:'BLSY' 0,'BLSX' 0">Ruhe</div><figcaption>Default. A built-in ballast you sense more than see.</figcaption></figure>
-      <figure><div class="s" style="font-variation-settings:'BLSY' 100,'BLSX' 0">Anker</div><figcaption>BLSY 100. The weight sinks to the baseline like a plumb bob.</figcaption></figure>
-      <figure><div class="s" style="font-variation-settings:'BLSY' -100,'BLSX' 0">Ballon</div><figcaption>BLSY −100. Light underneath, buoyant on top.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' 0,'BLSX' 0">Ruhe</div><figcaption><i>Ruhe</i> (rest). Default. A built-in ballast you sense more than see.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' 100,'BLSX' 0">Anker</div><figcaption><i>Anker</i> (anchor). BLSY 100. The weight sinks to the baseline like a plumb bob.</figcaption></figure>
+      <figure><div class="s" style="font-variation-settings:'BLSY' -100,'BLSX' 0">Ballon</div><figcaption><i>Ballon</i> (balloon). BLSY −100. Light underneath, buoyant on top.</figcaption></figure>
     </div>
   </section>
 
   <section>
     <h2>Text at rest</h2>
     <div class="text">
-      <p>A good typeface for a personal site has to do two jobs. It must step forward in a headline and step back in a paragraph. At rest, Senklot is a calm, open sans with a generous x-height, wide apertures and squared terminals that snap to the grid.</p>
+      <p>A versatile text typeface has to do two jobs. It must step forward in a headline and step back in a paragraph. At rest, Senklot is a calm, open sans with a generous x-height, wide apertures and squared terminals that snap to the grid.</p>
       <p>Its personality is a slight downward pull: crossbars sit low and stems swell a touch toward the baseline. It is <strong>grounded</strong> without being heavy, and the <em>italic</em> keeps that same quiet weight. Only when you move the mass does the system reveal itself.</p>
       <p>Größe, Übermut und Äpfel: the umlauts carry their own ballast. The figures 0123456789 stand on the same plumb line.</p>
       <p>Café, naïve, señor, Ørsted, «guillemets», „Anführungszeichen“, 100 % · 25 € · @senklot.</p>
@@ -246,7 +248,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   </section>
 
   <section id="glyphs">
-    <h2>Character set · hover a glyph</h2>
+    <h2>Character set · hover, tap or tab to a glyph</h2>
     <div class="toggles"><button class="chip" id="gr-it" aria-pressed="false">Italic</button></div>
     <div class="grid" id="grid"></div>
   </section>
@@ -257,7 +259,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
       <thead><tr><th>Axis</th><th>Range</th><th>Default</th><th>What it does</th><th>How to set it</th></tr></thead>
       <tbody>
         <tr><td><code>wght</code></td><td>300 … 800</td><td>400</td><td>Light to ExtraBold. Spacing opens up as strokes get heavier.</td><td><code>font-weight</code></td></tr>
-        <tr><td><code>BLSY</code></td><td>−100 … 100</td><td>0</td><td>Mass rises (−) or sinks toward the baseline (+).</td><td><code>font-variation-settings</code></td></tr>
+        <tr><td><code>BLSY</code></td><td>−100 … 100</td><td>0</td><td>Mass rises (−) or sinks toward the baseline (+). Positive pulls down, like a plumb line and like screen coordinates.</td><td><code>font-variation-settings</code></td></tr>
         <tr><td><code>BLSX</code></td><td>−100 … 100</td><td>0</td><td>Mass drifts left (−) or right (+).</td><td><code>font-variation-settings</code></td></tr>
         <tr><td>Italic</td><td>Roman / Italic</td><td>Roman</td><td>Separate file, picked automatically.</td><td><code>font-style: italic</code>, <code>&lt;em&gt;</code></td></tr>
       </tbody>
@@ -268,7 +270,7 @@ footer { padding: 48px 0 80px; color: var(--muted); font-size: 14px; border-top:
   <section id="use">
     <h2>Use it on your site</h2>
     <ol class="steps">
-      <li><h3>Copy the files</h3><p>Unzip the download and copy the contents of <code>web/</code> into a folder on your site, for example <code>/fonts/</code>. You need <code>senklot.css</code> and the two variable <code>.woff2</code> files.</p></li>
+      <li><h3>Copy the files</h3><p>Unzip the download and copy the contents of <code>web/</code> into a folder on your site, for example <code>/fonts/</code>. You need <code>senklot.css</code>, the two variable <code>.woff2</code> files and <code>OFL.txt</code>, which keeps the licence with the fonts.</p></li>
       <li><h3>Link the stylesheet</h3>
         <div class="code"><pre id="c1">&lt;link rel="preload" href="/fonts/Senklot[wght,BLSY,BLSX].woff2" as="font" type="font/woff2" crossorigin&gt;
 &lt;link rel="stylesheet" href="/fonts/senklot.css"&gt;</pre><button class="copy" data-copy="c1">Copy</button></div></li>
@@ -290,14 +292,20 @@ h1:hover { --blsy: 100; }
   h1 { transition: none; }
 }</pre><button class="copy" data-copy="c3">Copy</button></div></li>
       <li><h3>Animate from JavaScript</h3>
+        <p>This drives the custom properties from step 4, so the CSS there stays in charge and reduced motion is respected.</p>
         <div class="code"><pre id="c4">const el = document.querySelector("h1");
-addEventListener("pointermove", e =&gt; {
-  const y = (e.clientY / innerHeight * 2 - 1) * 100;
-  const x = (e.clientX / innerWidth  * 2 - 1) * 100;
-  el.style.fontVariationSettings = `"BLSY" ${y}, "BLSX" ${x}`;
-});</pre><button class="copy" data-copy="c4">Copy</button></div></li>
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!reduced) {
+  addEventListener("pointermove", e =&gt; {
+    const y = (e.clientY / innerHeight * 2 - 1) * 100;
+    const x = (e.clientX / innerWidth  * 2 - 1) * 100;
+    el.style.setProperty("--blsy", y.toFixed(1));
+    el.style.setProperty("--blsx", x.toFixed(1));
+  }, { passive: true });
+}</pre><button class="copy" data-copy="c4">Copy</button></div></li>
     </ol>
-    <div class="prose"><p>Browser support: variable fonts with custom axes work in all current versions of Chrome, Edge, Safari and Firefox. For very old browsers, the static files in <code>web/static/</code> give six fixed weights per style without the ballast axes.</p></div>
+    <div class="prose"><p>Browser support: variable fonts with custom axes work in all current versions of Chrome, Edge, Safari and Firefox. For legacy browsers or environments without variable font support, the static files in <code>web/static/</code> give six fixed weights per style without the ballast axes.</p></div>
   </section>
 
   <section id="download">
@@ -323,7 +331,7 @@ addEventListener("pointermove", e =&gt; {
       <div class="prose">
         <p>Every glyph is a skeleton of straight lines and superellipse arcs. The outline is drawn by offsetting each point of that skeleton by a half-width taken from the field:</p>
         <pre style="margin:16px 0">half-width = base × contrast × (1 + 0.10·v + 0.55·BLSY·v + 0.40·BLSX·u)</pre>
-        <p>Here <code>v</code> is the height in the letter and <code>u</code> the horizontal position. Because every outline point depends linearly on that half-width, the font interpolates exactly between its masters.</p>
+        <p>Here <code>u</code> is the horizontal position from the centre of the letter (−1 left to +1 right) and <code>v</code> the height, running from +1 at the descender to about −0.7 at the ascender. <code>BLSY</code> and <code>BLSX</code> are the axis values divided by 100, so −1 to +1. Because every outline point depends linearly on that half-width, the font interpolates exactly between its masters.</p>
       </div>
       <ul class="plain">
         <li>15 masters per style, including corners for weight × ballast, so combinations stay exact.</li>
@@ -342,7 +350,13 @@ addEventListener("pointermove", e =&gt; {
         <h3>Provenance</h3>
         <p>Senklot was generated from original parametric skeletons written for this project. No outlines, metrics or data from any existing font were used, traced or derived.</p>
         <h3 style="margin-top:28px">Licence</h3>
-        <p>Senklot is free and open under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>. Use it on websites, in apps, print and commercial work, embed it, modify it and share it. The only rules: don't sell the fonts on their own, keep modified versions under the OFL, and give them a different name. “Senklot” is a Reserved Font Name. <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">Full licence text</a>.</p>
+        <p>Senklot is free and open under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>. Use it on websites, in apps, print and commercial work, embed it, modify it and share it. The key conditions, in short:</p>
+        <ul class="plain" style="margin-top:12px">
+          <li>Don't sell the font files on their own. Selling a product that uses or bundles them is fine.</li>
+          <li>When you pass the font files on, for example in a theme, an app or a download, include the copyright notice and the licence (<code>OFL.txt</code>). Using them on a website you run only needs the files on your server; the licence comes along in <code>web/</code>.</li>
+          <li>Modified versions must stay under the OFL and must not be called “Senklot”, which is a Reserved Font Name.</li>
+        </ul>
+        <p style="margin-top:12px">This summary is for orientation only. The <a href="https://github.com/paulwilke/senklot/blob/main/OFL.txt">full licence text</a> is what applies. The website and build code are under the <a href="https://github.com/paulwilke/senklot/blob/main/LICENSE-CODE.txt">MIT licence</a>.</p>
       </div>
       <div class="prose">
         <h3>Known limits</h3>
@@ -475,7 +489,14 @@ addEventListener("pointermove", e =&gt; {
   // ---- glyph grid ----
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïñòóôõöøùúûüýÿß0123456789.,:;!?-–—…·•\'"‘’“”‚„«»‹›()[]{}/\\|+−×=<>~^*&@#%$€°©`´¨_';
   const grid = $('grid');
-  for (const c of chars) { const d = document.createElement('div'); d.textContent = c; grid.appendChild(d); }
+  for (const c of chars) {
+    const d = document.createElement('div'); d.textContent = c; d.tabIndex = 0;
+    d.setAttribute('role', 'button'); d.setAttribute('aria-pressed', 'false');
+    const toggle = () => d.setAttribute('aria-pressed', d.classList.toggle('on'));
+    d.onclick = toggle;
+    d.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } };
+    grid.appendChild(d);
+  }
   $('gr-it').onclick = e => { const on = grid.classList.toggle('it'); e.target.setAttribute('aria-pressed', on); };
 
   // ---- copy buttons ----

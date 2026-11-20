@@ -60,7 +60,10 @@ Every outline is generated from original parametric skeletons written for this p
 ## Licence
 Senklot is licensed under the [SIL Open Font License 1.1](OFL.txt): free to use, embed, modify and redistribute, including commercially. The fonts may not be sold on their own. Modified versions must stay under the OFL.
 
-"Senklot" is a **Reserved Font Name**: modified versions must not use the name Senklot. Unmodified copies keep the name. The build scripts in `src/` fall under the same licence.
+"Senklot" is a **Reserved Font Name**: modified versions must not use the name Senklot. Unmodified copies keep the name. 
+The OFL covers the fonts only. The build scripts in `src/` and the website in `docs/` are under the [MIT licence](LICENSE-CODE.txt).
+
+When you redistribute the font files (in a theme, app or download), include `OFL.txt`. The zip already has a copy in `web/` next to the web fonts.
 
 ## Known limits
 - No TrueType hinting, so rendering at small sizes on Windows is softer. On macOS, iOS and Android it makes no difference.
